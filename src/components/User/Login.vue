@@ -1,41 +1,81 @@
 <template>
   <div class="login-container">
-    <form>
-      <h1>Welcome back</h1>
-      <div class="switch-buttons">
-        <button
-          type="button"
-          class="switch-btn"
-          :class="{ active: !isFocus }"
-          @click="onActive"
-        >
-          Login
-        </button>
-        <button
-          type="button"
-          class="switch-btn"
-          :class="{ active: isFocus }"
-          @click="onActive"
-        >
-          Register
-        </button>
-      </div>
-      <div class="continue-with">
-        <button type="button" class="google">Google</button>
-        <button type="button" class="facebook">Facebook</button>
-      </div>
-      <div class="or">
-        <span class="left"></span>
-        <span class="text">or</span>
-        <span class="right"></span>
+    <Form
+      @submit="onSubmit"
+      :validation-schema="loginSchema"
+      :initial-values="loginInitialValues"
+      v-slot="{ isSubmitting, meta: { dirty, valid } }"
+    >
+      <AuthFormHeader :title="title" :is-focus="isFocus" @on-reset="onReset" />
+      <div class="field">
+        <Field
+          :name="email.name"
+          type="email"
+          class="input"
+          placeholder="Email"
+        />
+        <ErrorMessage name="email" class="error" />
       </div>
       <div class="field">
-        <input type="text" placeholder="Email" class="input" />
+        <Field
+          :name="password.name"
+          type="email"
+          class="input"
+          placeholder="Password"
+        />
+        <ErrorMessage name="password" class="error" />
       </div>
-      <div class="field">
-        <input type="text" placeholder="Password" class="input" />
-      </div>
-      <button type="button" class="auth-btn">Log in</button>
-    </form>
+      <button
+        type="submit"
+        class="button button-primary"
+        :disabled="isSubmitting || !(dirty && valid)"
+      >
+        Log in
+      </button>
+    </Form>
   </div>
 </template>
+
+<script>
+import { Form, Field, ErrorMessage } from "vee-validate";
+import { AuthFormHeader } from "@/components/Shared";
+import { authSchema, authInitialValues, authModel } from "@/forms/Auth";
+export default {
+  name: "LoginComponent",
+  emits: ["onActive", "onLogin"],
+  components: {
+    Field,
+    ErrorMessage,
+    Form,
+    AuthFormHeader,
+  },
+  props: {
+    isFocus: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  setup(props, { emit }) {
+    const {
+      login: {
+        formField: { email, password },
+      },
+    } = authModel;
+    const { loginSchema } = authSchema;
+    const { loginInitialValues } = authInitialValues;
+    return {
+      title: "Welcome Back",
+      onSubmit: ({ email, password }) => {
+        emit("onLogin", { user: { email, password } });
+      },
+      onReset: () => {
+        emit("onActive");
+      },
+      loginSchema,
+      loginInitialValues,
+      email,
+      password,
+    };
+  },
+};
+</script>
