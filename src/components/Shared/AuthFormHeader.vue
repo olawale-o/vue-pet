@@ -36,6 +36,7 @@
 <script>
 export default {
   name: "AuthFormHeader",
+  emits: ["onReset"],
   props: {
     title: {
       type: String,
