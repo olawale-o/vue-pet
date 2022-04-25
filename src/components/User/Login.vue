@@ -6,7 +6,7 @@
       :initial-values="loginInitialValues"
       v-slot="{ isSubmitting, meta: { dirty, valid } }"
     >
-      <AuthFormHeader :title="title" :is-focus="isFocus" @on-reset="onReset" />
+      <AuthFormHeader :title="title" @on-reset="onReset" />
       <div class="field">
         <Field
           :name="email.name"
@@ -48,12 +48,6 @@ export default {
     ErrorMessage,
     Form,
     AuthFormHeader,
-  },
-  props: {
-    isFocus: {
-      type: Boolean,
-      default: false,
-    },
   },
   setup(props, { emit }) {
     const {

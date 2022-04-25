@@ -2,16 +2,8 @@
   <div class="auth-container">
     <div class="container">
       <div class="form-container" :class="{ slide: isFocus }">
-        <LoginComponent
-          :is-focus="isFocus"
-          @on-active="onActive"
-          @on-login="onLogin"
-        />
-        <RegisterComponent
-          :is-focus="isFocus"
-          @on-active="onActive"
-          @on-register="onRegister"
-        />
+        <LoginComponent @on-login="onLogin" />
+        <RegisterComponent @on-register="onRegister" />
       </div>
       <div class="overlay-container"></div>
     </div>
@@ -19,7 +11,7 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref, provide } from "vue";
 import LoginComponent from "@/components/User/Login";
 import RegisterComponent from "@/components/User/Register";
 export default {
@@ -34,6 +26,12 @@ export default {
       isFocus.value = !isFocus.value;
     };
 
+    provide("active",  {
+      isFocus,
+      onActive,
+    });
+
+
     const onLogin = async (values) => {
       console.log(values);
     };
@@ -44,7 +42,6 @@ export default {
 
     return {
       isFocus,
-      onActive,
       onLogin,
       onRegister,
     };

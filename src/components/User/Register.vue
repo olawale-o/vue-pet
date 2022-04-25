@@ -6,7 +6,7 @@
       :initial-values="registerInitialValues"
       v-slot="{ isSubmitting, meta: { dirty, valid } }"
     >
-      <AuthFormHeader :title="title" :is-focus="isFocus" @on-reset="onReset" />
+      <AuthFormHeader :title="title" @on-reset="onReset" />
       <div class="field">
         <Field
           :name="username.name"
@@ -52,12 +52,6 @@ import { authSchema, authInitialValues, authModel } from "@/forms/Auth";
 export default {
   name: "RegisterComponent",
   emits: ["onActive", "onRegister"],
-  props: {
-    isFocus: {
-      type: Boolean,
-      default: false,
-    },
-  },
   components: {
     AuthFormHeader,
     Field,

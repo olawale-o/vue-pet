@@ -4,16 +4,16 @@
     <button
       type="button"
       class="button button-outline"
-      :disabled="!isFocus"
-      @click="$emit('onReset')"
+      :disabled="!focus"
+      @click="activate"
     >
       Login
     </button>
     <button
       type="button"
       class="button button-outline"
-      :disabled="isFocus"
-      @click="$emit('onReset')"
+      :disabled="focus"
+      @click="activate"
     >
       Register
     </button>
@@ -34,6 +34,7 @@
 </template>
 
 <script>
+import { inject } from "vue";
 export default {
   name: "AuthFormHeader",
   emits: ["onReset"],
@@ -46,6 +47,12 @@ export default {
       default: false,
     },
   },
-  setup() {},
+  setup() {
+    const { isFocus, onActive } = inject("active");
+    return {
+      focus: isFocus,
+      activate: onActive,
+    }
+  },
 };
 </script>
