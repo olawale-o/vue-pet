@@ -517,7 +517,7 @@ form .auth-btn {
 .overlay-container {
   height: 100%;
   width: 50%;
-  background-image: url('./assets/images/dog.jpg');
+  background-image: url('./images/dog.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   border-top-right-radius: 10px;
