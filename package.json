@@ -17,8 +17,10 @@
     "npm": "^8.7.0",
     "pinia": "^2.0.13",
     "pinia-plugin-persist": "^1.0.0",
+    "vee-validate": "^4.5.11",
     "vue": "^3.2.26",
-    "vue-router": "^4.0.14"
+    "vue-router": "^4.0.14",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
