@@ -14,7 +14,9 @@
         </li>
         <li class="nav_item">
           <router-link :to="`/${userId}/pets/new`" class="link nav_link">
-            <span class="link_text primary_link-text d-block text-center">Add Pet</span>
+            <span class="link_text primary_link-text d-block text-center">
+              Add Pet
+            </span>
           </router-link>
         </li>
       </ul>
@@ -25,16 +27,14 @@
 <script>
 export default {
   name: "ProfileSideBar",
-    props: {
-      userId: {
-        type: String,
-      },
+  props: {
+    userId: {
+      type: String,
     },
-  setup() {
-      
   },
-}
+  setup() {},
+};
 </script>
 <style scoped>
-  @import './style.css';
+@import "./style.css";
 </style>

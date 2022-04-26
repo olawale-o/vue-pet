@@ -1,17 +1,17 @@
 export default {
-  name: 'auth',
+  name: "auth",
   login: {
     formField: {
       email: {
-        name: 'email',
+        name: "email",
         error: {
-          required: 'Email is required',
+          required: "Email is required",
         },
       },
       password: {
-        name: 'password',
+        name: "password",
         error: {
-          required: 'Password is required',
+          required: "Password is required",
         },
       },
     },
@@ -19,21 +19,21 @@ export default {
   register: {
     formField: {
       registerEmail: {
-        name: 'email',
+        name: "email",
         error: {
-          required: 'Email is required',
+          required: "Email is required",
         },
       },
       username: {
-        name: 'username',
+        name: "username",
         error: {
-          required: 'Username is required',
+          required: "Username is required",
         },
       },
       registerPassword: {
-        name: 'password',
+        name: "password",
         error: {
-          required: 'Password is required',
+          required: "Password is required",
         },
       },
     },
