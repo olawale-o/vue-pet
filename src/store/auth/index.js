@@ -1,5 +1,4 @@
 import { defineStore } from "pinia";
-import { loginService, registerService, logoutService } from "@/services";
 
 const useAuthUserStore = defineStore({
   id: 'auth/user',
@@ -16,10 +15,10 @@ const useAuthUserStore = defineStore({
       this.user = { ...this.user, ...payload };
     },
 
-    async login(credentials, cb) {
+    async login(credentials, service, cb) {
       try {
         this.loading = !this.loading;
-        const response = await loginService(credentials);
+        const response = await service(credentials);
         this.updateUser(response);
         cb('/');
       } catch (error) {
@@ -29,10 +28,10 @@ const useAuthUserStore = defineStore({
       }
     },
 
-    async register(credentials, cb) {
+    async register(credentials, service, cb) {
       this.loading = !this.loading;
       try {
-        const response = await registerService(credentials);
+        const response = await service(credentials);
         this.updateUser(response);
         cb('/');
       } catch (error) {
@@ -42,10 +41,10 @@ const useAuthUserStore = defineStore({
       }
     },
 
-    async logOut() {
+    async logOut(service) {
       this.loading = !this.loading;
       try {
-        return logoutService()
+        return service()
         .then(() => {
           this.$reset();
         }).catch((error) => {
