@@ -46,14 +46,15 @@ const usePetStore = defineStore({
       }
     },
 
-    async getMyPets(service) {
+    async getMyPets(credentials, service) {
       this.loading = !this.loading;
       try {
         const {
           data: { dogs },
-        } = await service();
+        } = await service(credentials);
         this.updateMyPets(dogs);
       } catch (error) {
+        console.log(error);
         this.error = error.response.data.error;
       } finally {
         this.loading = !this.loading;
