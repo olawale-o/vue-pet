@@ -26,11 +26,10 @@ export default {
       isFocus.value = !isFocus.value;
     };
 
-    provide("active",  {
+    provide("active", {
       isFocus,
       onActive,
     });
-
 
     const onLogin = async (values) => {
       console.log(values);

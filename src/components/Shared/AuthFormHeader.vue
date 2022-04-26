@@ -52,7 +52,7 @@ export default {
     return {
       focus: isFocus,
       activate: onActive,
-    }
+    };
   },
 };
 </script>

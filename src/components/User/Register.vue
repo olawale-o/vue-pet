@@ -75,7 +75,7 @@ export default {
         emit("onActive");
       },
       onSubmit: ({ username, email, password }) => {
-        emit('onRegister', { user: { username, email, password } });
+        emit("onRegister", { user: { username, email, password } });
       },
       registerEmail,
       registerPassword,
