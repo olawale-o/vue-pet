@@ -56,7 +56,7 @@ const usePetStore = defineStore({
       }
     },
 
-    async getSelectePet(credential, service) {
+    async getSelectedPet(credential, service) {
       this.loading = !this.loading;
       try {
         const { data: { dog } } = await service(credential);
