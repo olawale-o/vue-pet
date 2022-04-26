@@ -10,6 +10,7 @@
 
 <script>
 export default {
+  name: "PetActionButton",
   emits: ["onAction"],
   setup() {},
 }
