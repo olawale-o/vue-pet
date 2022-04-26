@@ -17,7 +17,7 @@ const useAuthUserStore = defineStore({
     },
 
     async login(credentials, service, cb) {
-      const rootStore = useRootStore(); 
+      const rootStore = useRootStore();
       this.loading = !this.loading;
       try {
         const { token, user } = await service(credentials);
@@ -32,6 +32,7 @@ const useAuthUserStore = defineStore({
     },
 
     async register(credentials, service, cb) {
+      const rootStore = useRootStore();
       this.loading = !this.loading;
       try {
         const { token, user } = await service(credentials);
