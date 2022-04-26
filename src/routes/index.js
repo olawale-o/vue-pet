@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 
 const routes = [
   {
-    path: "/",
+    path: "/session",
     name: "user",
     component: () => import("../views/User.vue"),
   },
