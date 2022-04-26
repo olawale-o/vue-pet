@@ -3,6 +3,7 @@ import router from "./routes";
 import "./assets/index.css";
 import App from "./App.vue";
 import pinia from "./store";
+import icons from './icons';
 import api from "./api";
 import useRootStore from "./store/root";
 
@@ -24,4 +25,5 @@ api.interceptors.response.use(function(response) {
 const app = createApp(App);
 app.use(pinia);
 app.use(router);
+app.component('font-awesome-icon', icons)
 app.mount("#app");
