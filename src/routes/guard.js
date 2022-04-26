@@ -1,12 +1,12 @@
 import useAuthUserStore from "@/store/auth";
-import { myDogService  } from "@/services";
+import { myDogService } from "@/services";
 
 export const requiresAuth = (to, from, next) => {
   const store = useAuthUserStore();
   const currentUser = store.currentUser;
   if (!currentUser) {
     next({
-      path: '/session',
+      path: "/session",
       query: { redirect: to.fullPath },
     });
   } else {
@@ -19,7 +19,7 @@ export const requiresGuest = (to, from, next) => {
   const currentUser = store.currentUser;
   if (currentUser) {
     next({
-      path: '/',
+      path: "/",
     });
   } else {
     next();

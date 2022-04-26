@@ -1,3 +1,3 @@
-import { titlelize, GENDER_ENUM } from './strUtils';
+import { titlelize, GENDER_ENUM } from "./strUtils";
 
-export {titlelize, GENDER_ENUM };
+export { titlelize, GENDER_ENUM };
