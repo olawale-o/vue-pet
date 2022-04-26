@@ -7,11 +7,9 @@ const useRootStore = defineStore({
       loading: false,
       error: null,
       token: null,
-      user: null,
     };
   },
   getters: {
-    currentUser: (state) => state.user,
     isLoading: (state) => state.loading,
     currentError: (state) => state.error,
     currentToken: (state) => state.token,
@@ -28,12 +26,6 @@ const useRootStore = defineStore({
     },
     reset() {
       this.$reset();
-    },
-    updateUser(payload) {
-      this.user = payload;
-    },
-    updateField(payload) {
-      this.user = { ...this.user, ...payload };
     },
   },
   persist: {

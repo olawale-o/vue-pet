@@ -1,4 +1,5 @@
 import { defineStore } from "pinia";
+import useRootStore from "../root";
 
 const useAuthUserStore = defineStore({
   id: "auth/user",
@@ -16,11 +17,13 @@ const useAuthUserStore = defineStore({
     },
 
     async login(credentials, service, cb) {
+      const rootStore = useRootStore(); 
+      this.loading = !this.loading;
       try {
-        this.loading = !this.loading;
-        const response = await service(credentials);
-        this.updateUser(response);
-        cb("/");
+        const { token, user } = await service(credentials);
+        this.updateUser(user);
+        rootStore.setToken(token);
+        cb(`/${user.id}/pets`);
       } catch (error) {
         this.error = error.response.data.error;
       } finally {
@@ -31,9 +34,10 @@ const useAuthUserStore = defineStore({
     async register(credentials, service, cb) {
       this.loading = !this.loading;
       try {
-        const response = await service(credentials);
-        this.updateUser(response);
-        cb("/");
+        const { token, user } = await service(credentials);
+        this.updateUser(user);
+        rootStore.setToken(token);
+        cb(`/${user.id}/pets`);
       } catch (error) {
         this.error = error.response.data.error;
       } finally {
