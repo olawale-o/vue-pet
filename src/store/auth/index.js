@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 
 const useAuthUserStore = defineStore({
-  id: 'auth/user',
+  id: "auth/user",
   state: () => ({
     user: null,
     loading: false,
@@ -20,7 +20,7 @@ const useAuthUserStore = defineStore({
         this.loading = !this.loading;
         const response = await service(credentials);
         this.updateUser(response);
-        cb('/');
+        cb("/");
       } catch (error) {
         this.error = error.response.data.error;
       } finally {
@@ -33,7 +33,7 @@ const useAuthUserStore = defineStore({
       try {
         const response = await service(credentials);
         this.updateUser(response);
-        cb('/');
+        cb("/");
       } catch (error) {
         this.error = error.response.data.error;
       } finally {
@@ -45,17 +45,17 @@ const useAuthUserStore = defineStore({
       this.loading = !this.loading;
       try {
         return service()
-        .then(() => {
-          this.$reset();
-        }).catch((error) => {
-          this.error = error.message;
-        });
-      } catch(e) {
+          .then(() => {
+            this.$reset();
+          })
+          .catch((error) => {
+            this.error = error.message;
+          });
+      } catch (e) {
         this.error = e.message;
       } finally {
         this.loading = !this.loading;
       }
-
     },
   },
   persist: {
@@ -64,8 +64,8 @@ const useAuthUserStore = defineStore({
       {
         key: "auth",
         storage: localStorage,
-      }
-    ]
+      },
+    ],
   },
 });
 

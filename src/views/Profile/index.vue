@@ -12,8 +12,9 @@
 </template>
 
 <script>
-import { storeToRefs } from 'pinia';
-import useAuthUserStore from '@/store/authUserStore';
+import { storeToRefs } from "pinia";
+import useAuthUserStore from "@/store/auth";
+import { ProfileSideBar } from "@/components";
 export default {
   name: "ProfileView",
   components: {
@@ -23,11 +24,11 @@ export default {
     const { user } = storeToRefs(useAuthUserStore());
     return {
       user,
-    }
+    };
   },
-}
+};
 </script>
 
 <style scoped>
-  @import './style.css';
+@import "./style.css";
 </style>

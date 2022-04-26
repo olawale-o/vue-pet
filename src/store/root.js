@@ -1,6 +1,6 @@
-import { defineStore } from 'pinia';
+import { defineStore } from "pinia";
 
-export const useRootStore = defineStore({
+const useRootStore = defineStore({
   id: "root",
   state: () => {
     return {
@@ -8,7 +8,7 @@ export const useRootStore = defineStore({
       error: null,
       token: null,
       user: null,
-    }
+    };
   },
   getters: {
     currentUser: (state) => state.user,
@@ -42,7 +42,9 @@ export const useRootStore = defineStore({
       {
         key: "root",
         storage: localStorage,
-      }
-    ]
+      },
+    ],
   },
 });
+
+export default useRootStore;
