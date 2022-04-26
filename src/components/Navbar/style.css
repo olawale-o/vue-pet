@@ -1,0 +1,54 @@
+@media screen and (min-width: 768px) {
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+  }
+
+  .header .nav {
+    height: 6rem;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 3rem;
+  }
+
+  .nav .logo {
+    width: 10rem;
+    height: 6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav .nav__list {
+    display: flex;
+    flex: auto;
+    justify-content: flex-end;
+  }
+
+  .nav__list .nav__item .btn__link {
+    font-size: 1.5rem;
+    padding: 1rem 2.3rem;
+    border: none;
+    background: none;
+    outline: none;
+    cursor: pointer;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 5px;
+    transition: color 0.2s ease-in-out;
+  }
+
+  .nav__list .btn__link.btn-login {
+    background: #9d1218;
+    margin-right: 1rem;
+  }
+    
+  .nav__list .btn__link.btn-signup {
+    background: #6a7986;
+  }  
+}
