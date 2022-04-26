@@ -1,4 +1,5 @@
 import useAuthUserStore from "@/store/auth";
+import usePetStore from "@/store/pet";
 import { myDogService } from "@/services";
 
 export const requiresAuth = (to, from, next) => {
@@ -29,7 +30,7 @@ export const requiresGuest = (to, from, next) => {
 export const requiresMyPets = (to, from, next) => {
   const userAuthStore = useAuthUserStore();
   const currentUser = userAuthStore.currentUser;
-  const usePetStore = usePetStore();
-  usePetStore.getMyPets(myDogService(currentUser.id));
+  const petStore = usePetStore();
+  petStore.getMyPets(currentUser.id, myDogService);
   next();
 };
