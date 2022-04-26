@@ -1,5 +1,5 @@
 <template>
-  <header class="header">
+  <header class="header" v-if="user">
     <nav class="nav">
       <div class="logo">
         <router-link to="/" class="link logo_link">Paws</router-link>
@@ -21,9 +21,15 @@
 </template>
 
 <script>
+import { inject } from "vue";
 export default {
   name: "Navbar",
-  setup() {},
+  setup() {
+    const user = inject("user");
+    return {
+      user,
+    };
+  },
 };
 </script>
 
