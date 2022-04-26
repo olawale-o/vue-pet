@@ -25,6 +25,7 @@ const useAuthUserStore = defineStore({
         rootStore.setToken(token);
         cb(`/${user.id}/pets`);
       } catch (error) {
+        console.log(error);
         this.error = error.response.data.error;
       } finally {
         this.loading = !this.loading;
