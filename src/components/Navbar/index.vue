@@ -25,10 +25,10 @@ import { inject } from "vue";
 export default {
   name: "Navbar",
   setup() {
-    const user = inject("user");
+    const { user } = inject("global");
     return {
       user,
-    };
+    }; 
   },
 };
 </script>

@@ -10,6 +10,7 @@ const usePetStore = defineStore({
     loading: false,
     error: null,
   }),
+
   actions: {
     updatePets(payload) {
       this.myPets = this.myPets.concat(payload);
@@ -102,6 +103,15 @@ const usePetStore = defineStore({
     } finally {
       this.loading = !this.loading;
     }
+  },
+  persist: {
+    enabled: true,
+    strategies: [
+      {
+        key: "pet",
+        storage: localStorage,
+      },
+    ],
   },
 });
 
