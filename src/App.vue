@@ -16,7 +16,9 @@ export default {
   },
   setup() {
     const { user } = storeToRefs(useUserAuthStore());
-    provide("user", user);
+    provide("global", {
+      user,
+    });
   },
 };
 </script>

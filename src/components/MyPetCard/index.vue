@@ -39,7 +39,6 @@
 </template>
 
 <script>
-import { inject } from "vue";
 import secondDog from "@/assets/images/dog2.jpg";
 import { PetToolTipPopUp } from "@/components/Shared";
 import { titlelize, GENDER_ENUM } from "@/helper";
@@ -58,14 +57,16 @@ export default {
       type: Number,
       required: true,
     },
+    modal: {
+      type: Boolean,
+      required: true,
+    },
   },
   setup() {
-    const { modal } = inject("global");
     return {
       secondDog,
       titlelize,
       GENDER_ENUM,
-      modal,
     };
   },
 };
