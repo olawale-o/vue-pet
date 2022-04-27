@@ -1,14 +1,10 @@
 <template>
   <ToolTipPopUp>
     <ToolTipItem>
-      <PetActionButton @on-action="onDelete">
-        Delete
-      </PetActionButton>
+      <PetActionButton @on-action="onDelete">Delete</PetActionButton>
     </ToolTipItem>
     <ToolTipItem>
-      <PetActionButton @on-action="onModalOpen">
-        Edit
-      </PetActionButton>
+      <PetActionButton @on-action="onModalOpen">Edit</PetActionButton>
     </ToolTipItem>
   </ToolTipPopUp>
 </template>
@@ -27,12 +23,12 @@ export default {
     const { openModal } = inject("edit");
     return {
       onDelete: () => {
-        console.log('delete');
+        console.log("delete");
       },
       onModalOpen: () => {
         openModal();
       },
-    }
+    };
   },
-}
+};
 </script>

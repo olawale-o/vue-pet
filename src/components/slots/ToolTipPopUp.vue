@@ -8,5 +8,5 @@
 export default {
   name: "ToolTipPopUp",
   setup() {},
-}
+};
 </script>

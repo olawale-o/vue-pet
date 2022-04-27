@@ -6,5 +6,5 @@
 export default {
   name: "Home",
   setup() {},
-}
+};
 </script>

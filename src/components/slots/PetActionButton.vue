@@ -1,9 +1,5 @@
 <template>
-  <button
-    type="button"
-    className="action__btn"
-    @click="$emit('onAction')"
-  >
+  <button type="button" className="action__btn" @click="$emit('onAction')">
     <slot></slot>
   </button>
 </template>
@@ -13,5 +9,5 @@ export default {
   name: "PetActionButton",
   emits: ["onAction"],
   setup() {},
-}
+};
 </script>

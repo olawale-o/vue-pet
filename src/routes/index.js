@@ -39,9 +39,9 @@ const routes = [
             path: "new",
             name: "NewPet",
             component: NewPet,
-          }
+          },
         ],
-      }
+      },
     ],
   },
 ];

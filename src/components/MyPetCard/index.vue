@@ -45,7 +45,7 @@ import { titlelize, GENDER_ENUM } from "@/helper";
 export default {
   name: "MyPetCard",
   components: {
-    PetToolTipPopUp
+    PetToolTipPopUp,
   },
   emits: ["setPet"],
   props: {

@@ -28,7 +28,7 @@ export default {
     const { user } = inject("global");
     return {
       user,
-    }; 
+    };
   },
 };
 </script>
