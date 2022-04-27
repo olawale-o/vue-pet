@@ -6,7 +6,7 @@
       </PetActionButton>
     </ToolTipItem>
     <ToolTipItem>
-      <PetActionButton @on-action="openModal">
+      <PetActionButton @on-action="onModalOpen">
         Edit
       </PetActionButton>
     </ToolTipItem>
@@ -14,6 +14,7 @@
 </template>
 
 <script>
+import { inject } from "vue";
 import { PetActionButton, ToolTipItem, ToolTipPopUp } from "@/components/slots";
 export default {
   name: "PetToolTipPopUp",
@@ -23,12 +24,13 @@ export default {
     ToolTipPopUp,
   },
   setup() {
+    const { openModal } = inject("edit");
     return {
       onDelete: () => {
         console.log('delete');
       },
-      openModal: () => {
-        console.log('open modal');
+      onModalOpen: () => {
+        openModal();
       },
     }
   },
