@@ -3,6 +3,7 @@ import { requiresAuth, requiresMyPets } from "./guard";
 import ProfileView from "@/views/Profile";
 import PetView from "@/views/Pet";
 import MyPets from "@/views/Pet/MyPets";
+import NewPet from "@/views/Pet/NewPet";
 
 const routes = [
   {
@@ -12,28 +13,35 @@ const routes = [
   },
   {
     path: "/",
+    name: "Home",
+    component: () => import("@/views/Home"),
+  },
+  {
+    path: "/:userId",
     name: "ProfileView",
     component: ProfileView,
     meta: { requiresAuth: true },
-    redirect: { name: "PetView" },
+    redirect: { name: "MyPets" },
     beforeEnter: requiresAuth,
     children: [
       {
-        path: ":userId",
+        path: "pets",
         name: "PetView",
-        props: true,
         component: PetView,
-        redirect: { name: "MyPets" },
         children: [
           {
-            path: "pets",
+            path: "",
             name: "MyPets",
-            props: true,
             component: MyPets,
             beforeEnter: requiresMyPets,
           },
+          {
+            path: "new",
+            name: "NewPet",
+            component: NewPet,
+          }
         ],
-      },
+      }
     ],
   },
 ];
