@@ -12,13 +12,13 @@
             <span class="link_text">Pets</span>
           </router-link>
         </li>
-        <!-- <li class="nav_item">
+        <li class="nav_item">
           <router-link :to="`/${userId}/pets/new`" class="link nav_link">
             <span class="link_text primary_link-text d-block text-center">
               Add Pet
             </span>
           </router-link>
-        </li> -->
+        </li>
       </ul>
     </nav>
   </div>
