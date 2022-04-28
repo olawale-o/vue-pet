@@ -1,17 +1,20 @@
 <template>
   <div class="field">
     <input
+      v-on="validationListeners"
       :type="type"
       :name="name"
-      v-model="field"
       class="input"
       :placeholder="placeholder"
+      :value="value"
+      autocomplete="off"
     />
-    <span>{{ error }}</span>
+    <span class="field__error">{{ errorMessage }}</span>
   </div>
 </template>
 
 <script>
+import { computed, toRef } from "vue";
 import { useField } from "vee-validate";
 export default {
   name: "CustomInput",
@@ -30,11 +33,31 @@ export default {
     },
   },
   setup(props) {
-    const obj = useField(props.name);
+    const { value, errorMessage, handleChange } = useField(
+      toRef(props, "name"),
+      undefined,
+      { validateOnValueUpdate: false }
+    );
+    const validationListeners = computed(() => {
+      if (!errorMessage.value) {
+        return {
+          blur: handleChange,
+          change: handleChange,
+          input: (e) => handleChange(e, false),
+        };
+      }
+      return {
+        blur: handleChange,
+        change: handleChange,
+        input: handleChange,
+      };
+    });
     return {
-      field: obj.value[props.name],
-      error: obj.errorMessage[`${props.name}Error`],
-    }
+      value,
+      errorMessage,
+      handleChange,
+      validationListeners,
+    };
   },
 };
 </script>

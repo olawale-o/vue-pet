@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { computed } from "vue";
+import { computed, toRef } from "vue";
 import { useField } from "vee-validate";
 export default {
   name: "CustomInput",
@@ -33,9 +33,11 @@ export default {
     },
   },
   setup(props) {
-    const { value, errorMessage, handleChange } = useField(props.name, undefined, {
-      validateOnValueUpdate: false,
-    });
+    const { value, errorMessage, handleChange } = useField(
+      toRef(props, "name"),
+      undefined,
+      { validateOnValueUpdate: false }
+    );
     const validationListeners = computed(() => {
       if (!errorMessage.value) {
         return {
