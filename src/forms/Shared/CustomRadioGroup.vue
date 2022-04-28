@@ -1,5 +1,5 @@
 <template>
-  <div className="radio__group">
+  <div class="radio__group">
     <div v-for="(field, key) in fields" :key="key">
       <input
         v-on="validationListeners"
@@ -9,10 +9,10 @@
         @change="setValue(field.fieldValue)"
         required
       />
-      <span className="radio__label">{{ field.label }}</span>
+      <span class="radio__label">{{ field.label }}</span>
     </div>
   </div>
-  <div className="field__error">{{ errorMessage }}</div>
+  <div class="field__error">{{ errorMessage }}</div>
 </template>
 
 <script>
