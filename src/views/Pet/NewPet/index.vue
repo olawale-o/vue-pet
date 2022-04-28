@@ -1,10 +1,16 @@
 <template>
-  <div class="pet">New Pet form works</div>
+  <div class="pet">
+    <NewPetForm />
+  </div>
 </template>
 
 <script>
+import NewPetForm from "@/components/Pet/NewPetForm";
 export default {
   name: "NewPet",
+  components: {
+    NewPetForm,
+  },
   setup() {},
 }
 </script>
