@@ -50,7 +50,7 @@ export default {
       return props.validationSchema[currentStepIdx.value];
     });
 
-    const { resetForm, handleSubmit } = useForm({
+    const { resetForm, handleSubmit, values } = useForm({
       validationSchema: currentSchema,
       initialValues: props.initialValues,
     });
@@ -94,6 +94,7 @@ export default {
       hasPrevious,
       isLastStep,
       goToPrev,
+      values,
     };
   },
 };
