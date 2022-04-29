@@ -75,34 +75,34 @@ const usePetStore = defineStore({
         this.loading = !this.loading;
       }
     },
-  },
 
-  async getBreeds(service) {
-    this.loading = !this.loading;
-    try {
-      const {
-        data: { breeds },
-      } = await service();
-      this.updateBreeds(breeds);
-    } catch (error) {
-      this.error = error.response.data.error;
-    } finally {
+    async getBreeds(service) {
       this.loading = !this.loading;
-    }
-  },
+      try {
+        const {
+          data: { breeds },
+        } = await service();
+        this.updateBreeds(breeds);
+      } catch (error) {
+        this.error = error.response.data.error;
+      } finally {
+        this.loading = !this.loading;
+      }
+    },
 
-  async getAllPets(service) {
-    this.loading = !this.loading;
-    try {
-      const {
-        data: { dogs },
-      } = await service();
-      this.updateAllPets(dogs);
-    } catch (error) {
-      this.error = error.response.data.error;
-    } finally {
+    async getAllPets(service) {
       this.loading = !this.loading;
-    }
+      try {
+        const {
+          data: { dogs },
+        } = await service();
+        this.updateAllPets(dogs);
+      } catch (error) {
+        this.error = error.response.data.error;
+      } finally {
+        this.loading = !this.loading;
+      }
+    },
   },
   persist: {
     enabled: true,
