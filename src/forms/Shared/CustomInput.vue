@@ -14,8 +14,9 @@
 </template>
 
 <script>
-import { computed, toRef } from "vue";
+import { toRef } from "vue";
 import { useField } from "vee-validate";
+import { useValidationListeners } from "@/composables/useValidationListeners";
 export default {
   name: "CustomInput",
   props: {
@@ -38,20 +39,24 @@ export default {
       undefined,
       { validateOnValueUpdate: false }
     );
-    const validationListeners = computed(() => {
-      if (!errorMessage.value) {
-        return {
-          blur: handleChange,
-          change: handleChange,
-          input: (e) => handleChange(e, false),
-        };
-      }
-      return {
-        blur: handleChange,
-        change: handleChange,
-        input: handleChange,
-      };
-    });
+    // const validationListeners = computed(() => {
+    //   if (!errorMessage.value) {
+    //     return {
+    //       blur: handleChange,
+    //       change: handleChange,
+    //       input: (e) => handleChange(e, false),
+    //     };
+    //   }
+    //   return {
+    //     blur: handleChange,
+    //     change: handleChange,
+    //     input: handleChange,
+    //   };
+    // });
+    const validationListeners = useValidationListeners(
+      errorMessage,
+      handleChange
+    );
     return {
       value,
       errorMessage,

@@ -1,6 +1,7 @@
 <template>
   <div ref="el" class="search__input" :class="{ active: isVisible }">
     <input
+      v-on="validationListeners"
       type="text"
       :name="name"
       :placeholder="placeholder"
@@ -9,6 +10,7 @@
       autoComplete="off"
       @focus="$emit('onFocus')"
     />
+    <span class="field__error">{{ errorMessage }}</span>
     <ul class="match__box">
       <li v-for="(item, key) in list" :key="key">
         <button type="button" @click="onChoose(item)">
@@ -21,7 +23,8 @@
 
 <script>
 import { useField } from "vee-validate";
-import { toRef, computed } from "vue";
+import { toRef } from "vue";
+import { useValidationListeners } from "@/composables/useValidationListeners";
 export default {
   name: "CustomAutoSuggest",
   emits: ["onSearch", "onSelected", "onFocus"],
@@ -49,20 +52,21 @@ export default {
       undefined,
       { validateOnValueUpdate: false }
     );
-    const validationListeners = computed(() => {
-      if (!errorMessage.value) {
-        return {
-          blur: handleChange,
-          change: handleChange,
-          input: (e) => handleChange(e, false),
-        };
-      }
-      return {
-        blur: handleChange,
-        change: handleChange,
-        input: handleChange,
-      };
-    });
+    // const validationListeners = computed(() => {
+    //   if (!errorMessage.value) {
+    //     return {
+    //       blur: handleChange,
+    //       change: handleChange,
+    //       input: (e) => handleChange(e, false),
+    //     };
+    //   }
+    //   return {
+    //     blur: handleChange,
+    //     change: handleChange,
+    //     input: handleChange,
+    //   };
+    // });
+    const validationListeners = useValidationListeners(errorMessage, handleChange);
     return {
       value,
       errorMessage,
