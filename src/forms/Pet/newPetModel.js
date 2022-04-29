@@ -1,46 +1,46 @@
 export default {
-  name: 'newPetModel',
+  name: "newPetModel",
   formField: {
     petName: {
-      name: 'petName',
+      name: "petName",
       error: {
-        required: 'Pet name is required',
+        required: "Pet name is required",
       },
     },
     petColor: {
-      name: 'petColor',
+      name: "petColor",
       error: {
-        required: 'Pet color is required',
+        required: "Pet color is required",
       },
     },
     petGender: {
-      name: 'petGender',
+      name: "petGender",
       error: {
-        required: 'Pet gender is required',
+        required: "Pet gender is required",
       },
     },
     petWeight: {
-      name: 'petWeight',
+      name: "petWeight",
       error: {
-        required: 'Pet weight is required',
+        required: "Pet weight is required",
       },
     },
     petDescription: {
-      name: 'petDescription',
+      name: "petDescription",
       error: {
-        required: 'Pet description is required',
+        required: "Pet description is required",
       },
     },
     petBreed: {
-      name: 'petBreed',
+      name: "petBreed",
       error: {
-        required: 'Pet breed is required',
+        required: "Pet breed is required",
       },
     },
     petImages: {
-      name: 'petImages',
+      name: "petImages",
       error: {
-        required: 'Pet images is required',
+        required: "Pet images is required",
       },
     },
   },

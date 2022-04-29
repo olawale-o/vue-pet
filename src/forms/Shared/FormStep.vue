@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { inject, computed} from "vue";
+import { inject, computed } from "vue";
 export default {
   name: "FormStep",
   setup() {
