@@ -1,21 +1,20 @@
 const petColors = [
   {
     id: 1,
-    name: 'black',
+    name: "black",
   },
   {
     id: 2,
-    name: 'brown',
+    name: "brown",
   },
   {
     id: 3,
-    name: 'orange',
+    name: "orange",
   },
   {
     id: 4,
-    name: 'white',
+    name: "white",
   },
 ];
-  
+
 export default petColors;
-  
