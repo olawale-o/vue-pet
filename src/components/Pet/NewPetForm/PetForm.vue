@@ -58,7 +58,6 @@
 
 <script>
 import { ref } from "vue";
-// import { storeToRefs } from "pinia";
 import petColors from "@/constants/petColors.js";
 import { usePopUp } from "@/composables/usePopUp";
 import usePetStore from "@/store/pet";
@@ -115,7 +114,6 @@ export default {
       }
     };
 
-    // console.log(petStore.breeds);
     dogBreeds.value = petStore.breeds;
     return {
       onSliderMove,
