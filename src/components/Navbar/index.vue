@@ -8,7 +8,7 @@
         <li className="option">
           <button type="button" className="option__button bookmark">
             <span>
-              <AiOutlineMenu size={30} color="#000" />
+              <font-awesome-icon icon="bars" class="icon" />
             </span>
           </button>
         </li>
