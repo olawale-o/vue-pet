@@ -1,10 +1,13 @@
 <template>
   <ToolTipPopUp>
     <ToolTipItem>
-      <PetActionButton @on-action="onDelete">Delete</PetActionButton>
+      <PetActionButton @on-action="onPetDelete(petNumber)">Delete</PetActionButton>
     </ToolTipItem>
     <ToolTipItem>
       <PetActionButton @on-action="onModalOpen">Edit</PetActionButton>
+    </ToolTipItem>
+    <ToolTipItem>
+      <PetActionButton @on-action="onPetPhoto(petNumber)">Photos</PetActionButton>
     </ToolTipItem>
   </ToolTipPopUp>
 </template>
@@ -19,12 +22,17 @@ export default {
     ToolTipItem,
     ToolTipPopUp,
   },
+  props: {
+    petNumber: {
+      type: Number,
+      required: true,
+    },
+  },
   setup() {
-    const { openModal } = inject("edit");
+    const { openModal, onPetDelete, onPetPhoto } = inject("edit");
     return {
-      onDelete: () => {
-        console.log("delete");
-      },
+      onPetDelete,
+      onPetPhoto,
       onModalOpen: () => {
         openModal();
       },
