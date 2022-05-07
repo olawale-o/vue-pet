@@ -6,7 +6,7 @@
   align-items: center;
   background: #fff;
   border-radius: 10px;
-  min-height: 300px;
+  max-height: 300px;
 }
 
 .pet__card .action__card {
@@ -25,6 +25,11 @@
   display: block;
   width: 100%;
   padding: 1rem;
+  text-align: center;
+}
+
+.action__btn:hover {
+  background: #eee;
 }
 
 .pet__image {
@@ -38,8 +43,8 @@
   top: 10px;
   right: 10px;
   background: none;
-  width: 30px;
-  height: 30px;
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
 }
 

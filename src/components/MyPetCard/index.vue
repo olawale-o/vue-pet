@@ -1,6 +1,9 @@
 <template>
   <div class="pet__card">
-    <PetToolTipPopUp v-if="choosenPet === pet.id && !modal" />
+    <PetToolTipPopUp
+      v-if="choosenPet === pet.id && !modal"
+      :petNumber="choosenPet"
+    />
     <div class="pet__image">
       <button
         type="button"
