@@ -14,7 +14,7 @@
           <font-awesome-icon icon="ellipsis-h" class="icon" color="#fff" />
         </span>
       </button>
-      <img :src="secondDog" alt="dog" />
+      <img :src="`${BASE_URI}/${pet.image}`" alt="dog" />
     </div>
     <div class="pet__content">
       <h6 class="name">{{ titlelize(pet.name) }}</h6>
@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import secondDog from "@/assets/images/dog2.jpg";
+import BASE_URI from "@/constants";
 import { PetToolTipPopUp } from "@/components/Shared";
 import { titlelize, GENDER_ENUM } from "@/helper";
 export default {
@@ -67,7 +67,7 @@ export default {
   },
   setup() {
     return {
-      secondDog,
+      BASE_URI,
       titlelize,
       GENDER_ENUM,
     };
