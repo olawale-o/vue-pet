@@ -23,6 +23,11 @@
   
   /* PADDING */
   --default-input-padding: 0.8rem;
+
+  /* POSITION */
+  --default-position: relative;
+  --default-position-absolute: absolute;
+  --default-position-fixed: fixed;
 }
 
 /* WIDTH */
@@ -122,7 +127,7 @@ li {
 }
 
 .loading {
-  position: absolute;
+  position: var(--default-position-absolute);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -133,6 +138,10 @@ li {
   animation: loading 500ms linear infinite;
   border-radius: 50%;
   z-index: 1200;
+}
+
+.fixed {
+  position: var(--default-position-fixed);
 }
 
 @keyframes loading {
@@ -248,6 +257,10 @@ li {
 .nav_link:hover .primary_link-text {
   background: var(--light-hover-color);
   opacity: 0.8;
+}
+
+.nav_item a.router-link-active{
+  font-weight: var(--fw-bolder);
 }
 
 .overlay {
