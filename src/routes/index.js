@@ -1,9 +1,10 @@
 import { createRouter, createWebHistory } from "vue-router";
-import { requiresAuth, requiresMyPets } from "./guard";
+import { requiresAuth, requiresMyPets, requiresPetPhotos } from "./guard";
 import ProfileView from "@/views/Profile";
 import PetView from "@/views/Pet";
 import MyPets from "@/views/Pet/MyPets";
 import NewPet from "@/views/Pet/NewPet";
+import Photos from "@/views/Pet/Photos";
 
 const routes = [
   {
@@ -34,6 +35,13 @@ const routes = [
             name: "MyPets",
             component: MyPets,
             beforeEnter: requiresMyPets,
+          },
+          {
+            path: ":petId/photos",
+            name: "Photos",
+            component: Photos,
+            props: true,
+            beforeEnter: requiresPetPhotos,
           },
           {
             path: "new",
