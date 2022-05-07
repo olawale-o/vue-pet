@@ -57,10 +57,9 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref, inject } from "vue";
 import petColors from "@/constants/petColors.js";
 import { usePopUp } from "@/composables/usePopUp";
-import usePetStore from "@/store/pet";
 import {
   CustomInput,
   CustomTextArea,
@@ -84,14 +83,15 @@ export default {
     },
   },
   setup() {
+    const { breeds } = inject("global");
+    console.log(breeds);
     const slider = ref(null);
-    const dogBreeds = ref([]);
+    const dogBreeds = breeds.value;
     const colorSuggestRef = ref(null);
     const breedSuggestRef = ref(null);
     const pawColors = ref(petColors);
     const petColorPopUp = usePopUp(colorSuggestRef, false);
     const petBreedPopUp = usePopUp(breedSuggestRef, false);
-    const petStore = usePetStore();
     const onSliderMove = (value) => {
       slider.value.$refs.el.style.left = `${value / 2}%`;
       slider.value.$refs.el.classList.add("show");
@@ -113,8 +113,6 @@ export default {
         }
       }
     };
-
-    dogBreeds.value = petStore.breeds;
     return {
       onSliderMove,
       onSlideBlur,
