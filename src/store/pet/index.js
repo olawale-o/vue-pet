@@ -53,6 +53,9 @@ const usePetStore = defineStore({
     },
 
     async getMyPets(credentials, service) {
+      if (this.myPets) {
+        return true;
+      }
       this.loading = !this.loading;
       try {
         return service(credentials)
