@@ -10,11 +10,14 @@
         :modal="state.modal"
       />
     </div>
+    <Teleport to="#modals" v-if="state.modal">
+      <UpdatePetForm @close="closePopUp" />
+    </Teleport>
     <Teleport to="#overlay">
       <div
         v-if="state.overlay"
-        class="overlay bg-transparent"
-        :class="{'bg-dark z-index-2000': toDelete}"
+        class="overlay"
+        :class="{ ' bg-dark z-index-2000 ': state.toDelete }"
         @click="close"
       />
     </Teleport>
@@ -23,14 +26,19 @@
 </template>
 
 <script>
-import { reactive, provide } from "vue";
+import { reactive, provide, inject } from "vue";
+import { useRouter } from "vue-router";
 import MyPetCard from "@/components/MyPetCard";
 import { DeleteModal } from "@/components/Shared";
+import UpdatePetForm from "@/components/Pet/UpdatePetForm";
+import { getSelectedPetService } from "@/services";
+import usePetStore from "@/store/pet";
 export default {
   name: "ProfileArea",
   components: {
     MyPetCard,
     DeleteModal,
+    UpdatePetForm,
   },
   props: {
     pets: {
@@ -39,6 +47,9 @@ export default {
     },
   },
   setup() {
+    const petStore = usePetStore();
+    const { user: { value: { id } } } = inject("global");
+    const router = useRouter();
     const state = reactive({
       choosePet: 0,
       index: 0,
@@ -56,22 +67,46 @@ export default {
     const close = () => {
       state.overlay = !state.overlay;
       state.choosePet = 0;
+      state.toDelete = false;
     };
 
-    const openModal = () => {
+    const openModal = async () => {
+      petStore.getSelectedPet(
+        { petId: state.index, userId: id },
+        getSelectedPetService
+      );
       state.overlay = !state.overlay;
       state.modal = !state.modal;
       state.choosePet = 0;
+      document.body.style.overflow = 'hidden';
+    };
+
+    const onPetDelete = (petId) => {
+      console.log("delete", petId);
+      state.toDelete = !state.toDelete;
+      state.choosePet = 0;
+    };
+
+    const onPetPhoto = (petId) => {
+      router.push(`/${id}/pets/${petId}/photos`);
+    };
+
+    const closePopUp = () => {
+      document.body.removeAttribute('style');
+      state.modal = !state.modal;
     };
 
     provide("edit", {
       openModal,
+      onPetDelete,
+      onPetPhoto,
     });
 
     return {
       state,
       onChoosePet,
       close,
+      closePopUp,
     };
   },
 };
