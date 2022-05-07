@@ -1,8 +1,10 @@
-import BASE_URI from '../../constants';
-import { post, get, put } from '../../api';
+import BASE_URI from "../../constants";
+import { post, get, put } from "../../api";
 
 export const createDogService = async (credentials, userId) => {
-  const response = await post(`${BASE_URI}/v1/users/${userId}/dogs`, { body: credentials });
+  const response = await post(`${BASE_URI}/v1/users/${userId}/dogs`, {
+    body: credentials,
+  });
   return response.data;
 };
 
@@ -28,8 +30,12 @@ export const getSelectedPetService = async (credentials) => {
 };
 
 export const updatePetService = async (credentials, userId) => {
-  const { dog: { id } } = credentials;
-  const response = await put(`${BASE_URI}/v1/users/${userId}/dogs/${id}`, { body: credentials });
+  const {
+    dog: { id },
+  } = credentials;
+  const response = await put(`${BASE_URI}/v1/users/${userId}/dogs/${id}`, {
+    body: credentials,
+  });
   return response.data;
 };
 

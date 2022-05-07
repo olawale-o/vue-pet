@@ -1,13 +1,17 @@
 <template>
   <ToolTipPopUp>
     <ToolTipItem>
-      <PetActionButton @on-action="onPetDelete(petNumber)">Delete</PetActionButton>
+      <PetActionButton @on-action="onPetDelete(petNumber)">
+        Delete
+      </PetActionButton>
     </ToolTipItem>
     <ToolTipItem>
       <PetActionButton @on-action="openModal">Edit</PetActionButton>
     </ToolTipItem>
     <ToolTipItem>
-      <PetActionButton @on-action="onPetPhoto(petNumber)">Photos</PetActionButton>
+      <PetActionButton @on-action="onPetPhoto(petNumber)">
+        Photos
+      </PetActionButton>
     </ToolTipItem>
   </ToolTipPopUp>
 </template>

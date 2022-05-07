@@ -66,7 +66,10 @@ export default {
     //     input: handleChange,
     //   };
     // });
-    const validationListeners = useValidationListeners(errorMessage, handleChange);
+    const validationListeners = useValidationListeners(
+      errorMessage,
+      handleChange
+    );
     return {
       value,
       errorMessage,
