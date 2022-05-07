@@ -4,7 +4,8 @@
       <div class="main">
         <ProfileSideBar :userId="user.id" />
         <div class="outlet">
-          <router-view />
+          <div class="loading fixed" v-if="loading" />
+          <router-view v-else />
         </div>
       </div>
     </div>
@@ -14,6 +15,7 @@
 <script>
 import { storeToRefs } from "pinia";
 import useAuthUserStore from "@/store/auth";
+import usePetStore from "@/store/pet";
 import { ProfileSideBar } from "@/components";
 export default {
   name: "ProfileView",
@@ -22,8 +24,10 @@ export default {
   },
   setup() {
     const { user } = storeToRefs(useAuthUserStore());
+    const { loading } = storeToRefs(usePetStore());
     return {
       user,
+      loading,
     };
   },
 };

@@ -1,5 +1,5 @@
 <template>
-  <ProfileArea :pets="myPets" />
+  <ProfileArea :pets="pets" />
 </template>
 
 <script>
@@ -12,10 +12,9 @@ export default {
     ProfileArea,
   },
   setup() {
-    const { myPets, loading } = storeToRefs(usePetStore());
+    const { myPets } = storeToRefs(usePetStore());
     return {
-      myPets,
-      loading,
+      pets: myPets,
     };
   },
 };
