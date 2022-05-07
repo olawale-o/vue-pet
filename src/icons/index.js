@@ -5,7 +5,8 @@ import {
   faHeart,
   faTag,
   faBars,
+  faPen,
 } from "@fortawesome/free-solid-svg-icons";
-library.add(faEllipsisH, faHeart, faTag, faBars);
+library.add(faEllipsisH, faHeart, faTag, faBars, faPen);
 
 export default FontAwesomeIcon;
