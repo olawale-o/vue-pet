@@ -34,6 +34,7 @@ const routes = [
             path: "",
             name: "MyPets",
             component: MyPets,
+            props: true,
             beforeEnter: requiresMyPets,
           },
           {

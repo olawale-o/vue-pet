@@ -28,11 +28,16 @@ export const requiresGuest = (to, from, next) => {
 };
 
 export const requiresMyPets = (to, from, next) => {
-  const userAuthStore = useAuthUserStore();
-  const currentUser = userAuthStore.currentUser;
+  const store = useAuthUserStore();
+  const currentUser = store.currentUser;
   const petStore = usePetStore();
-  petStore.getMyPets(currentUser.id, myDogService);
-  next();
+  petStore.getMyPets(currentUser.id, myDogService)
+    .then(() => {
+      next();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
 export const requiresPetPhotos = (to, from, next) => {
