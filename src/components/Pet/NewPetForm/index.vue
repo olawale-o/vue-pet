@@ -18,7 +18,7 @@
 <script>
 import { onMounted } from "vue";
 import { FormStep, FormWizard } from "@/forms/Shared";
-import PetForm from "./PetForm.vue";
+import PetForm from "@/components/Pet/PetForm.vue";
 import PetImageUpload from "./ImageUpload.vue";
 import { newPetInitialValues, newPetSchema, newPetModel } from "@/forms/Pet";
 import usePetStore from "@/store/pet";

@@ -84,7 +84,6 @@ export default {
   },
   setup() {
     const { breeds } = inject("global");
-    console.log(breeds);
     const slider = ref(null);
     const dogBreeds = breeds.value;
     const colorSuggestRef = ref(null);
