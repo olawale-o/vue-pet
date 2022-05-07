@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-
+  
 const usePetStore = defineStore({
   id: "pet",
   state: () => ({
@@ -9,6 +9,7 @@ const usePetStore = defineStore({
     breeds: null,
     loading: false,
     error: null,
+    photos: [],
   }),
 
   actions: {
@@ -32,6 +33,10 @@ const usePetStore = defineStore({
       this.allPets = payload;
     },
 
+    updatePhotos(payload) {
+      this.photos = payload;
+    },
+  
     async createPet(data, service, push) {
       this.loading = !this.loading;
       try {
@@ -50,14 +55,14 @@ const usePetStore = defineStore({
     async getMyPets(credentials, service) {
       this.loading = !this.loading;
       try {
-        const {
-          data: { dogs },
-        } = await service(credentials);
-        this.updateMyPets(dogs);
+        return service(credentials)
+          .then(({ data: { dogs } }) => {
+            this.updateMyPets(dogs);
+            this.loading = !this.loading;
+            return true;
+          })
       } catch (error) {
-        console.log(error);
         this.error = error.response.data.error;
-      } finally {
         this.loading = !this.loading;
       }
     },
@@ -97,6 +102,19 @@ const usePetStore = defineStore({
           data: { dogs },
         } = await service();
         this.updateAllPets(dogs);
+      } catch (error) {
+        this.error = error.response.data.error;
+      } finally {
+        this.loading = !this.loading;
+      }
+    },
+
+    async getPhotos(credentials, service) {
+      this.loading = !this.loading;
+      try {
+        const { data: { photos } } = await service(credentials);
+        console.log(photos);
+        this.updatePhotos(photos);
       } catch (error) {
         this.error = error.response.data.error;
       } finally {
