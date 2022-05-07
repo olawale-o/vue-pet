@@ -7,6 +7,7 @@
         :name="name"
         :value="value"
         @change="setValue(field.fieldValue)"
+        :checked="field.fieldValue === value"
         required
       />
       <span class="radio__label">{{ field.label }}</span>
