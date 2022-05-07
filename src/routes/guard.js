@@ -1,6 +1,6 @@
 import useAuthUserStore from "@/store/auth";
 import usePetStore from "@/store/pet";
-import { myDogService } from "@/services";
+import { myDogService, getPetPhotosService } from "@/services";
 
 export const requiresAuth = (to, from, next) => {
   const store = useAuthUserStore();
@@ -32,5 +32,11 @@ export const requiresMyPets = (to, from, next) => {
   const currentUser = userAuthStore.currentUser;
   const petStore = usePetStore();
   petStore.getMyPets(currentUser.id, myDogService);
+  next();
+};
+
+export const requiresPetPhotos = (to, from, next) => {
+  const petStore = usePetStore();
+  petStore.getPhotos({ petId: to.params.petId }, getPetPhotosService);
   next();
 };
