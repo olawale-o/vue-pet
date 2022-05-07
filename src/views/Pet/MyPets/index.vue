@@ -1,4 +1,5 @@
 <template>
+  <div class="loading fixed" v-if="loading" />
   <ProfileArea :pets="pets" />
 </template>
 
@@ -12,9 +13,10 @@ export default {
     ProfileArea,
   },
   setup() {
-    const { myPets } = storeToRefs(usePetStore());
+    const { myPets, loading } = storeToRefs(usePetStore());
     return {
       pets: myPets,
+      loading,
     };
   },
 };

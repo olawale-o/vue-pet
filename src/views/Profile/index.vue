@@ -4,8 +4,7 @@
       <div class="main">
         <ProfileSideBar :userId="user.id" />
         <div class="outlet">
-          <div class="loading fixed" v-if="loading" />
-          <router-view v-else />
+          <router-view />
         </div>
       </div>
     </div>

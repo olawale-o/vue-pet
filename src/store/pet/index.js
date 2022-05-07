@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-  
+
 const usePetStore = defineStore({
   id: "pet",
   state: () => ({
@@ -36,7 +36,7 @@ const usePetStore = defineStore({
     updatePhotos(payload) {
       this.photos = payload;
     },
-  
+
     async createPet(data, service, push) {
       this.loading = !this.loading;
       try {
@@ -58,12 +58,11 @@ const usePetStore = defineStore({
       }
       this.loading = !this.loading;
       try {
-        return service(credentials)
-          .then(({ data: { dogs } }) => {
-            this.updateMyPets(dogs);
-            this.loading = !this.loading;
-            return true;
-          })
+        return service(credentials).then(({ data: { dogs } }) => {
+          this.updateMyPets(dogs);
+          this.loading = !this.loading;
+          return true;
+        });
       } catch (error) {
         this.error = error.response.data.error;
         this.loading = !this.loading;
@@ -115,7 +114,9 @@ const usePetStore = defineStore({
     async getPhotos(credentials, service) {
       this.loading = !this.loading;
       try {
-        const { data: { photos } } = await service(credentials);
+        const {
+          data: { photos },
+        } = await service(credentials);
         console.log(photos);
         this.updatePhotos(photos);
       } catch (error) {

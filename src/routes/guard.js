@@ -31,7 +31,8 @@ export const requiresMyPets = (to, from, next) => {
   const store = useAuthUserStore();
   const currentUser = store.currentUser;
   const petStore = usePetStore();
-  petStore.getMyPets(currentUser.id, myDogService)
+  petStore
+    .getMyPets(currentUser.id, myDogService)
     .then(() => {
       next();
     })
