@@ -6,7 +6,7 @@
       </div>
       <ul className="option__list">
         <li className="option">
-          <button type="button" className="option__button bookmark">
+          <button type="button" class="option__button bookmark">
             <span>
               <font-awesome-icon icon="bars" class="icon" />
             </span>
