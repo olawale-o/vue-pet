@@ -4,10 +4,8 @@
       <div class="pet__form w-100">
         <form @submit="onSubmit">
           <PetFormVue :formField="formField" />
-          <div className="actions">
-            <button type="submit" class="btn btn__primary">
-              Update
-            </button>
+          <div class="actions">
+            <button type="submit" class="btn btn__primary">Update</button>
           </div>
         </form>
       </div>
@@ -39,7 +37,7 @@ export default {
         petDescription,
         petGender,
       },
-    } = newPetModel;    
+    } = newPetModel;
     const initialValues = {
       [petName.name]: selectedPet.value.name,
       [petWeight.name]: selectedPet.value.weight,
@@ -74,5 +72,5 @@ export default {
 };
 </script>
 <style scoped>
-  @import "./style.css";
+@import "./style.css";
 </style>

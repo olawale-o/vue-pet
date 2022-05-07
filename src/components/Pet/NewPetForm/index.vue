@@ -16,13 +16,11 @@
 </template>
 
 <script>
-import { onMounted } from "vue";
 import { FormStep, FormWizard } from "@/forms/Shared";
 import PetForm from "@/components/Pet/PetForm.vue";
 import PetImageUpload from "./ImageUpload.vue";
 import { newPetInitialValues, newPetSchema, newPetModel } from "@/forms/Pet";
-import usePetStore from "@/store/pet";
-import { getDogBreedsService } from "@/services";
+// import usePetStore from "@/store/pet";
 export default {
   name: "NewPetForm",
   components: {
@@ -33,10 +31,7 @@ export default {
   },
   setup() {
     const { formField } = newPetModel;
-    const petStore = usePetStore();
-    onMounted(async () => {
-      await petStore.getBreeds(getDogBreedsService);
-    });
+    // const petStore = usePetStore();
     return {
       newPetSchema,
       newPetInitialValues,

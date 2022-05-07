@@ -3,7 +3,7 @@
     <nav class="nav-container">
       <ul class="nav_list">
         <li class="nav_item">
-          <router-link to="/" class="link nav_link">
+          <router-link to="/" class="link nav_link" exact>
             <span class="link_text">Notifications</span>
           </router-link>
         </li>

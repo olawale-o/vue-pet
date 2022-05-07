@@ -24,7 +24,7 @@ export default {
       BASE_URI,
     };
   },
-}
+};
 </script>
 <style scoped>
 @import "./style.css";

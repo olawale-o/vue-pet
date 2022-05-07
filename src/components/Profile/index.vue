@@ -1,10 +1,18 @@
 <template>
-  <div className="profile__area">
-    <div className="pets">
+  <div class="profile__area">
+    <div class="pets">
       <MyPetCard
         v-for="pet in pets"
         :key="pet.id"
-        :pet="pet"
+        :pet="{
+          id: pet.id,
+          name: pet.name,
+          offerCount: 2,
+          likeCount: 5,
+          color: pet.color,
+          gender: pet.gender,
+          image: pet.images[0].url,
+        }"
         :choosenPet="state.choosePet"
         @set-pet="onChoosePet"
         :modal="state.modal"
@@ -27,6 +35,7 @@
 
 <script>
 import { reactive, provide, inject } from "vue";
+import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";
 import MyPetCard from "@/components/MyPetCard";
 import { DeleteModal } from "@/components/Shared";
@@ -48,7 +57,12 @@ export default {
   },
   setup() {
     const petStore = usePetStore();
-    const { user: { value: { id } } } = inject("global");
+    const { loading } = storeToRefs(usePetStore());
+    const {
+      user: {
+        value: { id },
+      },
+    } = inject("global");
     const router = useRouter();
     const state = reactive({
       choosePet: 0,
@@ -71,14 +85,14 @@ export default {
     };
 
     const openModal = async () => {
-      petStore.getSelectedPet(
+      await petStore.getSelectedPet(
         { petId: state.index, userId: id },
         getSelectedPetService
       );
       state.overlay = !state.overlay;
       state.modal = !state.modal;
       state.choosePet = 0;
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     };
 
     const onPetDelete = (petId) => {
@@ -92,7 +106,7 @@ export default {
     };
 
     const closePopUp = () => {
-      document.body.removeAttribute('style');
+      document.body.removeAttribute("style");
       state.modal = !state.modal;
     };
 
@@ -107,6 +121,7 @@ export default {
       onChoosePet,
       close,
       closePopUp,
+      loading,
     };
   },
 };
