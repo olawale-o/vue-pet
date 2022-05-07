@@ -4,7 +4,7 @@
       <div class="logo">
         <router-link to="/" class="link logo_link">Paws</router-link>
       </div>
-      <ul className="option__list">
+      <ul className="option__list sm">
         <li className="option">
           <button type="button" class="option__button bookmark">
             <span>
@@ -13,12 +13,7 @@
           </button>
         </li>
       </ul>
-      <ul class="nav__list">
-        <li class="nav__item">
-          <router-link to="/" type="button" class="btn__link btn-login">
-            Login
-          </router-link>
-        </li>
+      <ul class="nav__list lg">
         <li class="nav__item">
           <router-link to="/" type="button" class="btn__link btn-login">
             Logout
