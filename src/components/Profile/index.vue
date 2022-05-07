@@ -11,18 +11,26 @@
       />
     </div>
     <Teleport to="#overlay">
-      <div v-if="state.overlay" className="overlay" @click="close" />
+      <div
+        v-if="state.overlay"
+        class="overlay bg-transparent"
+        :class="{'bg-dark z-index-2000': toDelete}"
+        @click="close"
+      />
     </Teleport>
+    <DeleteModal v-if="state.toDelete" />
   </div>
 </template>
 
 <script>
 import { reactive, provide } from "vue";
 import MyPetCard from "@/components/MyPetCard";
+import { DeleteModal } from "@/components/Shared";
 export default {
   name: "ProfileArea",
   components: {
     MyPetCard,
+    DeleteModal,
   },
   props: {
     pets: {
@@ -36,6 +44,7 @@ export default {
       index: 0,
       modal: false,
       overlay: false,
+      toDelete: false,
     });
 
     const onChoosePet = (petId) => {
