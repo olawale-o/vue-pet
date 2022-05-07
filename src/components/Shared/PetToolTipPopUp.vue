@@ -4,7 +4,7 @@
       <PetActionButton @on-action="onPetDelete(petNumber)">Delete</PetActionButton>
     </ToolTipItem>
     <ToolTipItem>
-      <PetActionButton @on-action="onModalOpen">Edit</PetActionButton>
+      <PetActionButton @on-action="openModal">Edit</PetActionButton>
     </ToolTipItem>
     <ToolTipItem>
       <PetActionButton @on-action="onPetPhoto(petNumber)">Photos</PetActionButton>
@@ -33,9 +33,7 @@ export default {
     return {
       onPetDelete,
       onPetPhoto,
-      onModalOpen: () => {
-        openModal();
-      },
+      openModal,
     };
   },
 };
