@@ -1,7 +1,7 @@
-import { schema } from 'normalizr';
-import petSchema from './petSchema';
+import { schema } from "normalizr";
+import petSchema from "./petSchema";
 
-const userSchema = new schema.Entity('users', {
+const userSchema = new schema.Entity("users", {
   dogs: [petSchema],
 });
 

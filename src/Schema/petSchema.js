@@ -1,7 +1,7 @@
-import { schema } from 'normalizr';
-import photoSchema from './photoSchema';
+import { schema } from "normalizr";
+import photoSchema from "./photoSchema";
 
-const petSchema = new schema.Entity('dogs', {
+const petSchema = new schema.Entity("dogs", {
   images: [photoSchema],
 });
 

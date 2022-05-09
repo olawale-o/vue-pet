@@ -1,5 +1,5 @@
-import { schema } from 'normalizr';
+import { schema } from "normalizr";
 
-const photoSchema = new schema.Entity('photos');
+const photoSchema = new schema.Entity("photos");
 
 export default photoSchema;
