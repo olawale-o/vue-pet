@@ -1,5 +1,7 @@
 import { defineStore } from "pinia";
 
+import { normalizeMyPets } from "../../Schema/normalizers";
+
 const usePetStore = defineStore({
   id: "pet",
   state: () => ({
@@ -10,6 +12,7 @@ const usePetStore = defineStore({
     loading: false,
     error: null,
     photos: [],
+    petIds: [],
   }),
 
   actions: {
@@ -18,7 +21,9 @@ const usePetStore = defineStore({
     },
 
     updateMyPets(payload) {
-      this.myPets = payload;
+      this.myPets = payload.pets;
+      this.photos = payload.photos;
+      this.petIds = payload.petIds;
     },
 
     updateSelectedPet(payload) {
@@ -58,11 +63,18 @@ const usePetStore = defineStore({
       }
       this.loading = !this.loading;
       try {
-        return service(credentials).then(({ data: { dogs } }) => {
-          this.updateMyPets(dogs);
-          this.loading = !this.loading;
-          return true;
-        });
+        return service(credentials).then(
+          ({
+            data: {
+              owner: { dogs },
+            },
+          }) => {
+            const { pets, petIds, photos } = normalizeMyPets(dogs);
+            this.updateMyPets({ pets, petIds, photos });
+            this.loading = !this.loading;
+            return true;
+          }
+        );
       } catch (error) {
         this.error = error.response.data.error;
         this.loading = !this.loading;
