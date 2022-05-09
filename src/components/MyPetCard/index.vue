@@ -1,20 +1,16 @@
 <template>
   <div class="pet__card">
     <PetToolTipPopUp
-      v-if="choosenPet === pet.id && !modal"
+      v-if="choosenPet === petId && !modal"
       :petNumber="choosenPet"
     />
     <div class="pet__image">
-      <button
-        type="button"
-        class="remove__btn"
-        @click="$emit('setPet', pet.id)"
-      >
+      <button type="button" class="remove__btn" @click="$emit('setPet', pet)">
         <span>
           <font-awesome-icon icon="ellipsis-h" class="icon" color="#fff" />
         </span>
       </button>
-      <img :src="`${BASE_URI}/${pet.image}`" alt="dog" />
+      <img :src="`${BASE_URI}/${petPhoto.url}`" alt="dog" />
     </div>
     <div class="pet__content">
       <h6 class="name">{{ titlelize(pet.name) }}</h6>
@@ -42,9 +38,12 @@
 </template>
 
 <script>
+import { computed } from "vue";
 import BASE_URI from "@/constants";
+import { storeToRefs } from "pinia";
 import { PetToolTipPopUp } from "@/components/Shared";
 import { titlelize, GENDER_ENUM } from "@/helper";
+import usePetStore from "@/store/pet";
 export default {
   name: "MyPetCard",
   components: {
@@ -52,8 +51,8 @@ export default {
   },
   emits: ["setPet"],
   props: {
-    pet: {
-      type: Object,
+    petId: {
+      type: Number,
       required: true,
     },
     choosenPet: {
@@ -65,8 +64,13 @@ export default {
       required: true,
     },
   },
-  setup() {
+  setup(props) {
+    const { myPets, photos } = storeToRefs(usePetStore());
+    const pet = computed(() => myPets.value[String(props.petId)]);
+    const petPhoto = computed(() => photos.value[String(pet.value.images[0])]);
     return {
+      pet,
+      petPhoto,
       BASE_URI,
       titlelize,
       GENDER_ENUM,

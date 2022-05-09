@@ -1,18 +1,11 @@
 <template>
   <div class="profile__area">
+    <!-- <div class="loading fixed" v-if="loading" /> -->
     <div class="pets">
       <MyPetCard
-        v-for="pet in pets"
-        :key="pet.id"
-        :pet="{
-          id: pet.id,
-          name: pet.name,
-          offerCount: 2,
-          likeCount: 5,
-          color: pet.color,
-          gender: pet.gender,
-          image: pet.images[0].url,
-        }"
+        v-for="(pet, index) in pets"
+        :key="index"
+        :petId="pet"
         :choosenPet="state.choosePet"
         @set-pet="onChoosePet"
         :modal="state.modal"
