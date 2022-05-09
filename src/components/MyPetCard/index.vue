@@ -5,7 +5,7 @@
       :petNumber="choosenPet"
     />
     <div class="pet__image">
-      <button type="button" class="remove__btn" @click="$emit('setPet', pet)">
+      <button type="button" class="remove__btn" @click="$emit('setPet', petId)">
         <span>
           <font-awesome-icon icon="ellipsis-h" class="icon" color="#fff" />
         </span>
@@ -23,13 +23,13 @@
           <span>
             <font-awesome-icon icon="heart" class="icon" />
           </span>
-          <span>{{ pet.likeCount }}</span>
+          <span>{{ 5 }}</span>
         </button>
         <button type="button" class="interaction__btn">
           <span>
             <font-awesome-icon icon="tag" class="icon" />
           </span>
-          <span>{{ pet.offerCount }}</span>
+          <span>{{ 2 }}</span>
         </button>
       </div>
       <button type="button" class="details">Details</button>
