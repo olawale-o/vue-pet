@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 
-import { normalizeMyPets } from "../../Schema/normalizers";
+import { normalizeMyPets, normalizePhotos } from "../../Schema/normalizers";
 
 const usePetStore = defineStore({
   id: "pet",
@@ -58,9 +58,9 @@ const usePetStore = defineStore({
     },
 
     async getMyPets(credentials, service) {
-      if (this.myPets) {
-        return true;
-      }
+      // if (this.myPets) {
+      //   return true;
+      // }
       this.loading = !this.loading;
       try {
         return service(credentials).then(
@@ -129,8 +129,8 @@ const usePetStore = defineStore({
         const {
           data: { photos },
         } = await service(credentials);
-        console.log(photos);
-        this.updatePhotos(photos);
+        const images = normalizePhotos(photos);
+        this.updatePhotos(images);
       } catch (error) {
         this.error = error.response.data.error;
       } finally {
