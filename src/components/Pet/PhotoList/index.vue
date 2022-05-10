@@ -1,15 +1,11 @@
 <template>
   <div class="photo__list">
-    <div className="photo" :key="index" v-for="(photo, index) in photos">
-      <img :src="`${BASE_URI}${photo.url}`" alt="dog" />
-      <button type="button" className="photo__btn">
-        <font-awesome-icon icon="pen" class="icon" color="#fff" />
-      </button>
-    </div>
+    <Photo :key="index" v-for="(photo, index) in photos" :photoId="photo" />
   </div>
 </template>
 
 <script>
+import Photo from "../Photo";
 import BASE_URI from "@/constants";
 export default {
   name: "PhotoList",
@@ -18,6 +14,9 @@ export default {
       type: Array,
       required: true,
     },
+  },
+  components: {
+    Photo,
   },
   setup() {
     return {
