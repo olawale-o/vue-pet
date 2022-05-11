@@ -33,7 +33,6 @@ import { useRouter } from "vue-router";
 import MyPetCard from "@/components/MyPetCard";
 import { DeleteModal } from "@/components/Shared";
 import UpdatePetForm from "@/components/Pet/UpdatePetForm";
-import { getSelectedPetService } from "@/services";
 import usePetStore from "@/store/pet";
 export default {
   name: "ProfileArea",
@@ -50,7 +49,7 @@ export default {
   },
   setup() {
     const petStore = usePetStore();
-    const { loading } = storeToRefs(usePetStore());
+    const { loading, myPets } = storeToRefs(usePetStore());
     const {
       user: {
         value: { id },
@@ -77,11 +76,9 @@ export default {
       state.toDelete = false;
     };
 
-    const openModal = async () => {
-      await petStore.getSelectedPet(
-        { petId: state.index, userId: id },
-        getSelectedPetService
-      );
+    const openModal = () => {
+      const pet = myPets.value[state.index];
+      petStore.getSelectedPet(pet);
       state.overlay = !state.overlay;
       state.modal = !state.modal;
       state.choosePet = 0;

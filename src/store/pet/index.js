@@ -81,13 +81,10 @@ const usePetStore = defineStore({
       }
     },
 
-    async getSelectedPet(credential, service) {
+    async getSelectedPet(credential) {
       this.loading = !this.loading;
       try {
-        const {
-          data: { dog },
-        } = await service(credential);
-        this.updateSelectedPet(dog);
+        this.updateSelectedPet(credential);
       } catch (error) {
         this.error = error.response.data.error;
       } finally {
