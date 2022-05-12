@@ -1,5 +1,10 @@
 import { createRouter, createWebHistory } from "vue-router";
-import { requiresAuth, requiresMyPets, requiresPetPhotos } from "./guard";
+import {
+  requiresAuth,
+  requiresGuest,
+  requiresMyPets,
+  requiresPetPhotos,
+} from "./guard";
 import ProfileView from "@/views/Profile";
 import PetView from "@/views/Pet";
 import MyPets from "@/views/Pet/MyPets";
@@ -11,11 +16,13 @@ const routes = [
     path: "/session",
     name: "user",
     component: () => import("../views/User.vue"),
+    beforeEnter: requiresGuest,
   },
   {
     path: "/",
     name: "Home",
     component: () => import("@/views/Home"),
+    beforeEnter: requiresAuth,
   },
   {
     path: "/:userId",
