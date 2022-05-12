@@ -36,8 +36,12 @@ export default {
   name: "ProfileArea",
   components: {
     MyPetCard,
-    "DeleteModal": defineAsyncComponent(() => import("@/components/Shared/DeleteModal")),
-    "UpdatePetForm": defineAsyncComponent(() => import("@/components/Pet/UpdatePetForm")),
+    DeleteModal: defineAsyncComponent(() =>
+      import("@/components/Shared/DeleteModal")
+    ),
+    UpdatePetForm: defineAsyncComponent(() =>
+      import("@/components/Pet/UpdatePetForm")
+    ),
   },
   props: {
     pets: {
