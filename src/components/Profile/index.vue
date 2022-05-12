@@ -27,19 +27,17 @@
 </template>
 
 <script>
-import { reactive, provide, inject } from "vue";
+import { reactive, provide, inject, defineAsyncComponent } from "vue";
 import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";
 import MyPetCard from "@/components/MyPetCard";
-import { DeleteModal } from "@/components/Shared";
-import UpdatePetForm from "@/components/Pet/UpdatePetForm";
 import usePetStore from "@/store/pet";
 export default {
   name: "ProfileArea",
   components: {
     MyPetCard,
-    DeleteModal,
-    UpdatePetForm,
+    "DeleteModal": defineAsyncComponent(() => import("@/components/Shared/DeleteModal")),
+    "UpdatePetForm": defineAsyncComponent(() => import("@/components/Pet/UpdatePetForm")),
   },
   props: {
     pets: {
