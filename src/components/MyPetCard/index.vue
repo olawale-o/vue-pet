@@ -10,7 +10,7 @@
           <font-awesome-icon icon="ellipsis-h" class="icon" color="#fff" />
         </span>
       </button>
-      <img :src="`${BASE_URI}/${petPhoto.url}`" alt="dog" />
+      <img :src="`${BASE_URI}/${pet.pic_url}`" alt="dog" />
     </div>
     <div class="pet__content">
       <h6 class="name">{{ titlelize(pet.name) }}</h6>
@@ -65,12 +65,10 @@ export default {
     },
   },
   setup(props) {
-    const { myPets, photos } = storeToRefs(usePetStore());
+    const { myPets } = storeToRefs(usePetStore());
     const pet = computed(() => myPets.value[String(props.petId)]);
-    const petPhoto = computed(() => photos.value[String(pet.value.images[0])]);
     return {
       pet,
-      petPhoto,
       BASE_URI,
       titlelize,
       GENDER_ENUM,
