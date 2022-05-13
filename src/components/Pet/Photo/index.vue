@@ -1,7 +1,8 @@
 <template>
   <div class="photo">
     <CustomToolTipPopUp
-      :petNumber="1"
+      v-if="choosenPhoto === photoId"
+      :petNumber="choosenPhoto"
     >
       <ToolTipItem>
         <ToolTipButton @on-action="onDelete(photoId)">
@@ -10,7 +11,7 @@
       </ToolTipItem>
     </CustomToolTipPopUp>
     <img :src="`${BASE_URI}${photo.url}`" alt="dog" />
-    <button type="button" className="photo__btn">
+    <button type="button" className="photo__btn" @click="$emit('setPhoto', photoId)">
       <font-awesome-icon icon="pen" class="icon" color="#fff" />
     </button>
   </div>
@@ -30,8 +31,13 @@ export default {
     ToolTipButton,
     ToolTipItem,
   },
+  emits: ["setPhoto"],
   props: {
     photoId: {
+      type: Number,
+      required: true,
+    },
+    choosenPhoto: {
       type: Number,
       required: true,
     },
