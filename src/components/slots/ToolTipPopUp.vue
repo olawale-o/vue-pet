@@ -1,5 +1,5 @@
 <template>
-  <ul className="action__card">
+  <ul class="action__card" style="background: yellow">
     <slot></slot>
   </ul>
 </template>

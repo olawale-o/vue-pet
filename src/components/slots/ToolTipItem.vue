@@ -1,5 +1,5 @@
 <template>
-  <li className="action__card-item">
+  <li class="action__card-item">
     <slot></slot>
   </li>
 </template>
