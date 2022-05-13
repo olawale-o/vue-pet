@@ -18,7 +18,7 @@
       <div
         v-if="state.overlay"
         class="overlay"
-        :class="{ ' bg-dark z-index-2000 ': state.toDelete }"
+        :class="{ ' bg-dark z-index-2000 ': state.fullOverlay }"
         @click="close"
       />
     </Teleport>
@@ -63,7 +63,7 @@ export default {
       index: 0,
       modal: false,
       overlay: false,
-      toDelete: false,
+      fullOverlay: false,
     });
 
     const onChoosePet = (petId) => {
@@ -75,7 +75,7 @@ export default {
     const close = () => {
       state.overlay = !state.overlay;
       state.choosePet = 0;
-      state.toDelete = false;
+      state.fullOverlay = false;
     };
 
     const openModal = () => {
@@ -89,7 +89,7 @@ export default {
 
     const onPetDelete = (petId) => {
       console.log("delete", petId);
-      state.toDelete = !state.toDelete;
+      state.fullOverlay = !state.toDelete;
       state.choosePet = 0;
     };
 
