@@ -1,9 +1,23 @@
 <template>
   <div class="pet__card">
-    <PetToolTipPopUp
+    <CustomToolTipPopUp
       v-if="choosenPet === petId && !modal"
       :petNumber="choosenPet"
-    />
+    >
+      <ToolTipItem>
+        <ToolTipButton @on-action="onPetDelete(petId)">
+          Delete
+        </ToolTipButton>
+      </ToolTipItem>
+      <ToolTipItem>
+        <ToolTipButton @on-action="openModal">Edit</ToolTipButton>
+      </ToolTipItem>
+      <ToolTipItem>
+        <ToolTipButton @on-action="onPetPhoto(petId)">
+          Photos
+        </ToolTipButton>
+      </ToolTipItem>
+    </CustomToolTipPopUp>
     <div class="pet__image">
       <button type="button" class="remove__btn" @click="$emit('setPet', petId)">
         <span>
@@ -38,16 +52,19 @@
 </template>
 
 <script>
-import { computed } from "vue";
+import { computed, inject } from "vue";
 import BASE_URI from "@/constants";
 import { storeToRefs } from "pinia";
-import { PetToolTipPopUp } from "@/components/Shared";
+import { CustomToolTipPopUp } from "@/components/Shared";
+import { ToolTipButton, ToolTipItem } from "@/components/slots";
 import { titlelize, GENDER_ENUM } from "@/helper";
 import usePetStore from "@/store/pet";
 export default {
   name: "MyPetCard",
   components: {
-    PetToolTipPopUp,
+    CustomToolTipPopUp,
+    ToolTipButton,
+    ToolTipItem,
   },
   emits: ["setPet"],
   props: {
@@ -65,6 +82,7 @@ export default {
     },
   },
   setup(props) {
+    const { openModal, onPetDelete, onPetPhoto } = inject("edit");
     const { myPets } = storeToRefs(usePetStore());
     const pet = computed(() => myPets.value[String(props.petId)]);
     return {
@@ -72,6 +90,9 @@ export default {
       BASE_URI,
       titlelize,
       GENDER_ENUM,
+      openModal,
+      onPetDelete,
+      onPetPhoto,
     };
   },
 };

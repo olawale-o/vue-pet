@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import { provide } from "vue";
 import Photo from "../Photo";
 import BASE_URI from "@/constants";
 export default {
@@ -19,6 +20,7 @@ export default {
     Photo,
   },
   setup() {
+    provide("edit", {});
     return {
       BASE_URI,
     };
