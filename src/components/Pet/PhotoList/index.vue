@@ -6,6 +6,7 @@
       :photoId="photo"
       :choosenPhoto="state.choosenPhoto"
       @set-photo="setPhoto"
+      @make-profile-photo="makeProfilePhoto"
     />
     <Teleport to="#overlay">
       <div
@@ -20,8 +21,11 @@
 
 <script>
 import { reactive } from "vue";
+import { useRoute, useRouter } from "vue-router";
 import Photo from "../Photo";
 import BASE_URI from "@/constants";
+import { setProfilePhotoService } from "@/services";
+import usePetStore from "@/store/pet";
 export default {
   name: "PhotoList",
   props: {
@@ -34,6 +38,11 @@ export default {
     Photo,
   },
   setup() {
+    const {
+      params: { petId },
+    } = useRoute();
+    const router = useRouter();
+    const petStore = usePetStore();
     const state = reactive({
       choosenPhoto: 0,
       overlay: false,
@@ -50,11 +59,22 @@ export default {
       state.choosenPhoto = 0;
       state.fullOverlay = false;
     };
+    const makeProfilePhoto = (url) => {
+      state.choosenPhoto = 0;
+      state.overlay = false;
+      state.fullOverlay = false;
+      petStore.setProfilePhoto(
+        { petId, photo: { url } },
+        setProfilePhotoService,
+        router.go
+      );
+    };
     return {
       BASE_URI,
       state,
       setPhoto,
       close,
+      makeProfilePhoto,
     };
   },
 };

@@ -42,6 +42,15 @@ const usePetStore = defineStore({
       this.photos = payload;
     },
 
+    updatePhoto(payload) {
+      const myPets = this.myPets;
+      // const allPets = this.allPets;
+      myPets[payload.id].pic_url = payload.pic_url;
+      // allPets[payload.id].pic_url = payload.pic_url;
+      this.myPets = myPets;
+      // this.allPets = allPets;
+    },
+
     async createPet(data, service, push) {
       this.loading = !this.loading;
       try {
@@ -130,6 +139,21 @@ const usePetStore = defineStore({
         this.updatePhotos(images);
       } catch (error) {
         this.error = error.response.data.error;
+      } finally {
+        this.loading = !this.loading;
+      }
+    },
+    async setProfilePhoto(credential, service, cb) {
+      this.loading = !this.loading;
+      try {
+        const {
+          data: { dog },
+        } = await service(credential);
+        this.updatePhoto(dog);
+        cb(-1);
+      } catch (e) {
+        console.log(e);
+        this.error = e.response.data.error;
       } finally {
         this.loading = !this.loading;
       }

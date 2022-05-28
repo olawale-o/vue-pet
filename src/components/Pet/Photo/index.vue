@@ -5,13 +5,20 @@
       :petNumber="choosenPhoto"
     >
       <ToolTipItem>
-        <ToolTipButton @on-action="onDelete(photoId)">
-          Delete
+        <ToolTipButton @on-action="onDelete(photoId)">Delete</ToolTipButton>
+      </ToolTipItem>
+      <ToolTipItem>
+        <ToolTipButton @on-action="makeProfilePhoto(photo.url)">
+          Make profile photo
         </ToolTipButton>
       </ToolTipItem>
     </CustomToolTipPopUp>
     <img :src="`${BASE_URI}${photo.url}`" alt="dog" />
-    <button type="button" className="photo__btn" @click="$emit('setPhoto', photoId)">
+    <button
+      type="button"
+      class="photo__btn"
+      @click="$emit('setPhoto', photoId)"
+    >
       <font-awesome-icon icon="pen" class="icon" color="#fff" />
     </button>
   </div>
@@ -31,7 +38,7 @@ export default {
     ToolTipButton,
     ToolTipItem,
   },
-  emits: ["setPhoto"],
+  emits: ["setPhoto", "makeProfilePhoto"],
   props: {
     photoId: {
       type: Number,
@@ -42,7 +49,7 @@ export default {
       required: true,
     },
   },
-  setup(props) {
+  setup(props, { emit }) {
     const { photos } = storeToRefs(usePetStore());
     const photo = computed(() => photos.value[String(props.photoId)]);
     return {
@@ -50,6 +57,9 @@ export default {
       photo,
       onDelete: (id) => {
         console.log("delete" + id);
+      },
+      makeProfilePhoto: (photoUrl) => {
+        emit("makeProfilePhoto", photoUrl);
       },
     };
   },
