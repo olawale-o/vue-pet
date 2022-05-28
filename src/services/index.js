@@ -6,4 +6,5 @@ export {
   getDogBreedsService,
   getPetPhotosService,
   getSelectedPetService,
+  setProfilePhotoService,
 } from "./pet";
