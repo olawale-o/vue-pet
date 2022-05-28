@@ -35,9 +35,10 @@
       <div class="interactions">
         <button type="button" class="interaction__btn">
           <span>
-            <font-awesome-icon icon="heart" class="icon" />
+            <font-awesome-icon color="#E9547C" icon="heart" aria-label="like" class="icon" title="like" v-if="pet.liked_by_me" />
+            <font-awesome-icon color="#E9547C" icon="heart" aria-label="like" class="icon" title="like" v-else />
           </span>
-          <span>{{ 5 }}</span>
+          <span className="count">{{pet.likes}}</span>
         </button>
         <button type="button" class="interaction__btn">
           <span>
