@@ -2,7 +2,7 @@
   <div class="photo__list">
     <Photo
       :key="index"
-      v-for="(photo, index) in photos" 
+      v-for="(photo, index) in photos"
       :photoId="photo"
       :choosenPhoto="state.choosenPhoto"
       @set-photo="setPhoto"
