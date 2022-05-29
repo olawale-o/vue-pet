@@ -5,7 +5,8 @@
 </template>
 
 <script>
-import { provide, reactive } from "vue";
+import { provide, reactive, onMounted } from "vue";
+import { useRouter } from "vue-router";
 import { genders, breedTypes, petColors } from "@/constants";
 import SideSearchPanel from "@/components/SideSearchPanel";
 export default {
@@ -14,6 +15,7 @@ export default {
     SideSearchPanel,
   },
   setup() {
+    const router = useRouter();
     const fieldState = reactive({
       gender: "b",
       breed: "both",
@@ -29,6 +31,18 @@ export default {
     const onColorSelected = (value) => {
       fieldState.color = value;
     };
+
+    onMounted(() => {
+      router.replace({
+        path: "/listing",
+        query: {
+          gender: 'b',
+          breeder: 'b',
+          color: 'all',
+        },
+      });
+    });
+
     provide("sideParams", {
       fieldState,
       genders,
