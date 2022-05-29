@@ -1,5 +1,11 @@
 <template>
-  <div class="home">Home works !</div>
+  <div class="home">
+    <div class="content">
+      <div class="main">
+        <router-view />
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -8,3 +14,7 @@ export default {
   setup() {},
 };
 </script>
+
+<style scoped>
+@import "./style.css";
+</style>
