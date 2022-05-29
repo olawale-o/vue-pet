@@ -1,18 +1,23 @@
 import { defineStore } from "pinia";
 
-import { normalizeMyPets, normalizePhotos } from "../../Schema/normalizers";
+import {
+  normalizeMyPets,
+  normalizePhotos,
+  normalizeAllPets,
+} from "../../Schema/normalizers";
 
 const usePetStore = defineStore({
   id: "pet",
   state: () => ({
-    myPets: [],
-    allPets: [],
+    myPets: null,
+    allPets: null,
     selectedPet: null,
     breeds: null,
     loading: false,
     error: null,
     photos: [],
     petIds: [],
+    searchMeta: {},
   }),
 
   actions: {
@@ -34,21 +39,23 @@ const usePetStore = defineStore({
       this.breeds = payload;
     },
 
-    updateAllPets(payload) {
-      this.allPets = payload;
-    },
-
     updatePhotos(payload) {
       this.photos = payload;
     },
 
     updatePhoto(payload) {
       const myPets = this.myPets;
-      // const allPets = this.allPets;
+      const allPets = this.allPets;
       myPets[payload.id].pic_url = payload.pic_url;
-      // allPets[payload.id].pic_url = payload.pic_url;
+      allPets[payload.id].pic_url = payload.pic_url;
       this.myPets = myPets;
-      // this.allPets = allPets;
+      this.allPets = allPets;
+    },
+
+    updateAllPets(payload) {
+      this.searchMeta = payload.meta;
+      this.allPets = payload.pets;
+      this.petIds = payload.petIds;
     },
 
     async createPet(data, service, push) {
@@ -115,20 +122,6 @@ const usePetStore = defineStore({
       }
     },
 
-    async getAllPets(service) {
-      this.loading = !this.loading;
-      try {
-        const {
-          data: { dogs },
-        } = await service();
-        this.updateAllPets(dogs);
-      } catch (error) {
-        this.error = error.response.data.error;
-      } finally {
-        this.loading = !this.loading;
-      }
-    },
-
     async getPhotos(credentials, service) {
       this.loading = !this.loading;
       try {
@@ -153,6 +146,19 @@ const usePetStore = defineStore({
         cb(-1);
       } catch (e) {
         console.log(e);
+        this.error = e.response.data.error;
+      } finally {
+        this.loading = !this.loading;
+      }
+    },
+
+    async getAllPets(service, credential){
+      this.loading = !this.loading;
+      try {
+        const { data: { dogs, result_metadata: meta } } = await service(credential);
+        const { pets, petIds } = normalizeAllPets(dogs);
+        this.updateAllPets({ pets, petIds, meta });
+      } catch (e) {
         this.error = e.response.data.error;
       } finally {
         this.loading = !this.loading;
