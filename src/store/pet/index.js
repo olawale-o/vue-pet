@@ -152,7 +152,7 @@ const usePetStore = defineStore({
       }
     },
 
-    async getAllPets(service, credential){
+    async getAllPets(service, credential) {
       this.loading = !this.loading;
       try {
         const { data: { dogs, result_metadata: meta } } = await service(credential);
