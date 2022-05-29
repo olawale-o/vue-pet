@@ -4,6 +4,7 @@ import {
   requiresGuest,
   requiresMyPets,
   requiresPetPhotos,
+  fetchAllPets,
 } from "./guard";
 import ProfileView from "@/views/Profile";
 import PetView from "@/views/Pet";
@@ -35,6 +36,7 @@ const routes = [
         path: "listing",
         name: "Listings",
         component: Listings,
+        beforeEnter: fetchAllPets,
       },
     ],
   },
