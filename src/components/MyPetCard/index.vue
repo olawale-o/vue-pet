@@ -4,14 +4,10 @@
       v-if="choosenPet === petId && !modal"
       :petNumber="choosenPet"
     >
-      <ToolTipItem>
-        <ToolTipButton @on-action="onPetDelete(petId)"> Delete </ToolTipButton>
-      </ToolTipItem>
-      <ToolTipItem>
-        <ToolTipButton @on-action="openModal">Edit</ToolTipButton>
-      </ToolTipItem>
-      <ToolTipItem>
-        <ToolTipButton @on-action="onPetPhoto(petId)"> Photos </ToolTipButton>
+      <ToolTipItem v-for="(action, key) in actions" :key="key">
+        <ToolTipButton @on-action="action.func">
+          {{ action.text }}
+        </ToolTipButton>
       </ToolTipItem>
     </CustomToolTipPopUp>
     <div class="pet__image">
@@ -96,7 +92,25 @@ export default {
     const { openModal, onPetDelete, onPetPhoto } = inject("edit");
     const { myPets } = storeToRefs(usePetStore());
     const pet = computed(() => myPets.value[String(props.petId)]);
+    const actions = [
+      {
+        id: 1,
+        text: "Delete",
+        func: () => onPetDelete(props.petId),
+      },
+      {
+        id: 2,
+        text: "Edit",
+        func: () => openModal(),
+      },
+      {
+        id: 3,
+        text: "Photos",
+        func: () => onPetPhoto(props.petId),
+      },
+    ];
     return {
+      actions,
       pet,
       BASE_URI,
       titlelize,
