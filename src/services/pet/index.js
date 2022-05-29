@@ -8,8 +8,9 @@ export const createDogService = async (credentials, userId) => {
   return response.data;
 };
 
-export const allDogService = async () => {
-  const response = await get(`${BASE_URI}/v1/dogs`);
+export const allDogService = async (credential) => {
+  const { page = 0, gender, direction } = credential;
+  const response = await get(`${BASE_URI}/v1/dogs/?gender=${gender}&page=${page}&direction=${direction}`);
   return response.data;
 };
 
