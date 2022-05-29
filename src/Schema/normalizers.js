@@ -16,3 +16,8 @@ export const normalizePhotos = (data) => {
   } = normalize(data, [photoSchema]);
   return photos;
 };
+
+export const normalizeAllPets = (data) => {
+  const { entities: { dogs: pets }, result } = normalize(data, [petSchema]);
+  return { pets, petIds: result };
+};
