@@ -1,17 +1,16 @@
 const genders = [
   {
-    name: 'Male',
-    value: 'm',
+    name: "Male",
+    value: "m",
   },
   {
-    name: 'Female',
-    value: 'f',
+    name: "Female",
+    value: "f",
   },
   {
-    name: 'Both',
-    value: 'b',
+    name: "Both",
+    value: "b",
   },
 ];
-  
+
 export default genders;
-  
