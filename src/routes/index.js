@@ -23,6 +23,18 @@ const routes = [
     name: "Home",
     component: () => import("@/views/Home"),
     beforeEnter: requiresAuth,
+    children: [
+      {
+        path: "",
+        name: "Listings",
+        component: () => import("@/views/Listings"),
+      },
+      {
+        path: "listing",
+        name: "Listings",
+        component: () => import("@/views/Listings"),
+      },
+    ],
   },
   {
     path: "/:userId",
