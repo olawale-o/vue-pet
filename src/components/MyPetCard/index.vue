@@ -5,17 +5,13 @@
       :petNumber="choosenPet"
     >
       <ToolTipItem>
-        <ToolTipButton @on-action="onPetDelete(petId)">
-          Delete
-        </ToolTipButton>
+        <ToolTipButton @on-action="onPetDelete(petId)"> Delete </ToolTipButton>
       </ToolTipItem>
       <ToolTipItem>
         <ToolTipButton @on-action="openModal">Edit</ToolTipButton>
       </ToolTipItem>
       <ToolTipItem>
-        <ToolTipButton @on-action="onPetPhoto(petId)">
-          Photos
-        </ToolTipButton>
+        <ToolTipButton @on-action="onPetPhoto(petId)"> Photos </ToolTipButton>
       </ToolTipItem>
     </CustomToolTipPopUp>
     <div class="pet__image">
@@ -35,10 +31,24 @@
       <div class="interactions">
         <button type="button" class="interaction__btn">
           <span>
-            <font-awesome-icon color="#E9547C" icon="heart" aria-label="like" class="icon" title="like" v-if="pet.liked_by_me" />
-            <font-awesome-icon color="#E9547C" icon="heart" aria-label="like" class="icon" title="like" v-else />
+            <font-awesome-icon
+              color="#E9547C"
+              icon="heart"
+              aria-label="like"
+              class="icon"
+              title="like"
+              v-if="pet.liked_by_me"
+            />
+            <font-awesome-icon
+              color="#E9547C"
+              icon="heart"
+              aria-label="like"
+              class="icon"
+              title="like"
+              v-else
+            />
           </span>
-          <span className="count">{{pet.likes}}</span>
+          <span className="count">{{ pet.likes }}</span>
         </button>
         <button type="button" class="interaction__btn">
           <span>

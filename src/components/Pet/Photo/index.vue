@@ -5,7 +5,9 @@
       :petNumber="choosenPhoto"
     >
       <ToolTipItem v-for="(action, key) in actions" :key="key">
-        <ToolTipButton @on-action="action.func">{{action.text}}</ToolTipButton>
+        <ToolTipButton @on-action="action.func">
+          {{ action.text }}
+        </ToolTipButton>
       </ToolTipItem>
     </CustomToolTipPopUp>
     <img :src="`${BASE_URI}${photo.url}`" alt="dog" />
@@ -50,12 +52,12 @@ export default {
     const actions = [
       {
         id: 1,
-        text: 'Delete',
+        text: "Delete",
         func: () => console.log("delete" + props.photoId),
       },
       {
         id: 2,
-        text: 'Make profile photo',
+        text: "Make profile photo",
         func: () => emit("makeProfilePhoto", photo.value.url),
       },
     ];
