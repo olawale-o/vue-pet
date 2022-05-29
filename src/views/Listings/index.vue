@@ -19,26 +19,48 @@ export default {
     const fieldState = reactive({
       gender: "b",
       breed: "both",
-      color: "",
+      color: "all",
     });
+
     const onGenderSelected = (value) => {
       fieldState.gender = value;
+      router.replace({
+        query: {
+          gender: value,
+          breeder: fieldState.breed,
+          color: fieldState.color,
+        },
+      });
     };
-  
+
     const onBreedSelected = (value) => {
       fieldState.breed = value;
+      router.replace({
+        query: {
+          gender: fieldState.gender,
+          breeder: value,
+          color: fieldState.color,
+        },
+      });
     };
     const onColorSelected = (value) => {
       fieldState.color = value;
+      router.replace({
+        query: {
+          gender: fieldState.gender,
+          breeder: fieldState.breed,
+          color: value,
+        },
+      });
     };
 
     onMounted(() => {
       router.replace({
         path: "/listing",
         query: {
-          gender: 'b',
-          breeder: 'b',
-          color: 'all',
+          gender: fieldState.gender,
+          breeder: fieldState.breed,
+          color: "all",
         },
       });
     });
