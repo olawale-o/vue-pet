@@ -10,6 +10,7 @@ import PetView from "@/views/Pet";
 import MyPets from "@/views/Pet/MyPets";
 import NewPet from "@/views/Pet/NewPet";
 import Photos from "@/views/Pet/Photos";
+import Listings from "@/views/Listings";
 
 const routes = [
   {
@@ -25,14 +26,15 @@ const routes = [
     beforeEnter: requiresAuth,
     children: [
       {
-        path: "",
+        path: " ",
         name: "Listings",
+        redirect: { name: "Listings" },
         component: () => import("@/views/Listings"),
       },
       {
         path: "listing",
         name: "Listings",
-        component: () => import("@/views/Listings"),
+        component: Listings,
       },
     ],
   },
