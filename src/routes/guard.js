@@ -1,10 +1,6 @@
 import useAuthUserStore from "@/store/auth";
 import usePetStore from "@/store/pet";
-import {
-  myDogService,
-  getPetPhotosService,
-  allDogService,
-} from "@/services";
+import { myDogService, getPetPhotosService, allDogService } from "@/services";
 
 export const requiresAuth = (to, from, next) => {
   const store = useAuthUserStore();
@@ -55,10 +51,10 @@ export const fetchAllPets = (to, from, next) => {
   const petStore = usePetStore();
   petStore.getAllPets(allDogService, {
     page: 0,
-    gender: 'b',
-    breeder: 'b',
-    color: 'all',
-    direction: 'next',
+    gender: "b",
+    breeder: "b",
+    color: "all",
+    direction: "next",
   });
   next();
 };

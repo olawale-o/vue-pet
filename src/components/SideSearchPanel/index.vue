@@ -42,7 +42,7 @@
         <div
           ref="searchInputRef"
           class="search__input"
-          :class="{active: isVisible}"
+          :class="{ active: isVisible }"
         >
           <input
             type="text"
@@ -54,10 +54,7 @@
           />
           <ul class="match__box">
             <li v-for="({ name }, key) in pawColors" :key="key">
-              <button
-                type="button"
-                @click="onSelectedColor(name)"
-              >
+              <button type="button" @click="onSelectedColor(name)">
                 {{ name }}
               </button>
             </li>
@@ -86,11 +83,15 @@ export default {
     } = inject("sideParams");
     const pawColors = ref(petColors);
     const onSearch = (e) => {
-      const { target: { value } } = e;
-      if (value.trim() === '') {
+      const {
+        target: { value },
+      } = e;
+      if (value.trim() === "") {
         pawColors.value = petColors;
       } else {
-        const filterColors = petColors.filter((color) => color.name.startsWith(value.toLowerCase()));
+        const filterColors = petColors.filter((color) => {
+          return color.name.startsWith(value.toLowerCase());
+        });
         if (filterColors.length > 0) {
           pawColors.value = filterColors;
         } else {
@@ -100,11 +101,14 @@ export default {
     };
     onMounted(() => {
       const onOutSideClick = (event) => {
-        if (searchInputRef.value && !searchInputRef.value.contains(event.target)) {
+        if (
+          searchInputRef.value &&
+          !searchInputRef.value.contains(event.target)
+        ) {
           isVisible.value = false;
         }
       };
-     document.addEventListener("click", onOutSideClick);
+      document.addEventListener("click", onOutSideClick);
     });
     return {
       fieldState,
