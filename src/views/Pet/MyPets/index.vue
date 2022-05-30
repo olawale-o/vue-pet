@@ -12,9 +12,9 @@ export default {
     ProfileArea,
   },
   setup() {
-    const { petIds, loading } = storeToRefs(usePetStore());
+    const { myPetIds, loading } = storeToRefs(usePetStore());
     return {
-      pets: petIds,
+      pets: myPetIds,
       loading,
     };
   },

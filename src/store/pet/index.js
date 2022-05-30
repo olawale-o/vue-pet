@@ -17,6 +17,7 @@ const usePetStore = defineStore({
     error: null,
     photos: [],
     petIds: [],
+    myPetIds: [],
     searchMeta: {},
   }),
 
@@ -28,7 +29,7 @@ const usePetStore = defineStore({
     updateMyPets(payload) {
       this.myPets = payload.pets;
       this.photos = payload.photos;
-      this.petIds = payload.petIds;
+      this.myPetIds = payload.petIds;
     },
 
     updateSelectedPet(payload) {
