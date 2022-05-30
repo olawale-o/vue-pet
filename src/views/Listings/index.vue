@@ -13,6 +13,7 @@ import { storeToRefs } from "pinia";
 import { genders, breedTypes, petColors } from "@/constants";
 import SideSearchPanel from "@/components/SideSearchPanel";
 import PetListing from "@/components/PetListing";
+import { allDogService } from "@/services";
 export default {
   name: "ListingView",
   components: {
@@ -32,9 +33,16 @@ export default {
       direction: "next",
     });
 
+    const petStore = usePetStore();
+
+    const { petIds, searchMeta } = storeToRefs(usePetStore());
+
     const paginate = (page, direction) => {
-      // const gender = search.get('gender');
-      // fetchPets(allDogService, { page, gender, direction });
+      petStore.getAllPets(allDogService, {
+        page,
+        gender: fieldState.gender,
+        direction,
+      });
       paginationData.page = page;
       paginationData.direction = direction;
     };
@@ -47,6 +55,11 @@ export default {
           breeder: fieldState.breed,
           color: fieldState.color,
         },
+      });
+      petStore.getAllPets(allDogService, {
+        page: paginationData.page,
+        gender: value,
+        direction: paginationData.direction,
       });
     };
 
@@ -70,11 +83,6 @@ export default {
         },
       });
     };
-
-    const {
-      petIds,
-      searchMeta,
-    } = storeToRefs(usePetStore());
 
     onMounted(() => {
       router.replace({
