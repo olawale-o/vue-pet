@@ -8,6 +8,7 @@
             type="button"
             title="prev"
             class="button pagination__button prev"
+            :disabled="prevPageNo === null || prevPageNo === undefined || prevPageNo === 0"
           >
             Previous
           </button>
@@ -15,6 +16,7 @@
             type="button"
             title="next"
             class="button pagination__button next"
+            :disabled="prevPageNo === null || prevPageNo === undefined || prevPageNo === 0"
           >
             Next
           </button>
@@ -25,6 +27,7 @@
 </template>
 
 <script>
+import { inject } from "vue";
 import ListingPetCard from "@/components/ListingPetCard";
 export default {
   name: "PetListing",
@@ -36,7 +39,13 @@ export default {
       type: Array,
     },
   },
-  setup() { },
+  setup() {
+    const { prevPageNo, nextPageNo } = inject("sideParams");
+    return {
+      prevPageNo,
+      nextPageNo,
+    };
+  },
 }
 </script>
 

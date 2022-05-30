@@ -59,7 +59,10 @@ export default {
       });
     };
 
-    const { petIds } = storeToRefs(usePetStore());
+    const {
+      petIds,
+      searchMeta: { prev_page_no: prevPageNo, next_page_no: nextPageNo }
+    } = storeToRefs(usePetStore());
 
     onMounted(() => {
       router.replace({
@@ -80,6 +83,8 @@ export default {
       onColorSelected,
       onGenderSelected,
       onBreedSelected,
+      prevPageNo,
+      nextPageNo,
     });
     return {
       petIds,
