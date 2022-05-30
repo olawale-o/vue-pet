@@ -1,14 +1,23 @@
 <template>
   <div class="listings">
     <div class="listing__pet">
-      <ListingPetCard v-for="(petId, key) in petIds" :key="key"  :petId="petId"/>
+      <ListingPetCard
+        v-for="(petId, key) in petIds"
+        :key="key"
+        :petId="petId"
+      />
       <div class="pagination">
         <div class="pagination__buttons">
           <button
             type="button"
             title="prev"
             class="button pagination__button prev"
-            :disabled="prevPageNo === null || prevPageNo === undefined || prevPageNo === 0"
+            :disabled="
+              searchMeta.prev_page_no === null ||
+              searchMeta.prev_page_no === undefined ||
+              searchMeta.prev_page_no === 0
+            "
+            @click="paginate(searchMeta.prev_page_no, 'prev')"
           >
             Previous
           </button>
@@ -16,7 +25,12 @@
             type="button"
             title="next"
             class="button pagination__button next"
-            :disabled="prevPageNo === null || prevPageNo === undefined || prevPageNo === 0"
+            :disabled="
+              searchMeta.next_page_no === null ||
+              searchMeta.next_page_no  === undefined ||
+              searchMeta.next_page_no  === 0
+            "
+            @click="paginate(searchMeta.next_page_no , 'next')"
           >
             Next
           </button>
@@ -40,10 +54,10 @@ export default {
     },
   },
   setup() {
-    const { prevPageNo, nextPageNo } = inject("sideParams");
+    const { searchMeta, paginate } = inject("sideParams");
     return {
-      prevPageNo,
-      nextPageNo,
+      searchMeta,
+      paginate,
     };
   },
 }

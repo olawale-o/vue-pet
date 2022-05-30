@@ -27,6 +27,18 @@ export default {
       color: "all",
     });
 
+    const paginationData = reactive({
+      page: 0,
+      direction: "next",
+    });
+
+    const paginate = (page, direction) => {
+      // const gender = search.get('gender');
+      // fetchPets(allDogService, { page, gender, direction });
+      paginationData.page = page;
+      paginationData.direction = direction;
+    };
+
     const onGenderSelected = (value) => {
       fieldState.gender = value;
       router.replace({
@@ -61,7 +73,7 @@ export default {
 
     const {
       petIds,
-      searchMeta: { prev_page_no: prevPageNo, next_page_no: nextPageNo }
+      searchMeta,
     } = storeToRefs(usePetStore());
 
     onMounted(() => {
@@ -83,8 +95,8 @@ export default {
       onColorSelected,
       onGenderSelected,
       onBreedSelected,
-      prevPageNo,
-      nextPageNo,
+      paginate,
+      searchMeta,
     });
     return {
       petIds,
