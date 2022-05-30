@@ -1,0 +1,53 @@
+.listings .listing__pet .pagination {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.pagination .pagination__button {
+  font-weight: 600;
+}
+
+.pagination .pagination__button.prev {
+  background: #fff;
+  color: #bb3133;
+}
+
+.pagination .pagination__button.next {
+  background: #bb3133;
+  color: #fff;
+}
+
+@media screen and (min-width: 768px) {
+  .listings{
+    width: auto;
+    margin-left: 280px;
+    display: flex;
+    flex-direction: column;
+    padding-top: 8rem;
+  }
+  
+  .pagination {
+    width: 100%;
+   }
+
+   .pagination__buttons {
+     width: 100%;
+     max-width: 72rem;
+     margin-left: auto;
+     margin-right: auto;
+     display: flex;
+     justify-content: flex-end;
+   }
+
+   .pagination__button.next {
+      margin-left: 1rem;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+  .listings {
+    margin-left: 300px;
+  }
+}
+
