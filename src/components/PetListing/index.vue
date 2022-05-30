@@ -27,10 +27,10 @@
             class="button pagination__button next"
             :disabled="
               searchMeta.next_page_no === null ||
-              searchMeta.next_page_no  === undefined ||
-              searchMeta.next_page_no  === 0
+              searchMeta.next_page_no === undefined ||
+              searchMeta.next_page_no === 0
             "
-            @click="paginate(searchMeta.next_page_no , 'next')"
+            @click="paginate(searchMeta.next_page_no, 'next')"
           >
             Next
           </button>
@@ -60,7 +60,7 @@ export default {
       paginate,
     };
   },
-}
+};
 </script>
 
 <style scoped>

@@ -8,8 +8,7 @@
         <img :src="`${BASE_URI}${pet.pic_url}`" alt="dog" :title="pet.name" />
         <div class="media">
           <div class="camera">
-            <span class="icon mx-2" title="media">
-            </span>
+            <span class="icon mx-2" title="media"></span>
             <span>{{ pet.images.length }}</span>
           </div>
         </div>
@@ -28,14 +27,13 @@
         <div class="middle">
           <span class="for">BREEDER</span>
           <p>
-            <span class="icon">
-            </span>
+            <span class="icon"></span>
             <span>Lagos</span>
           </p>
         </div>
         <p class="description">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          Lorem ipsum dolor.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum
+          dolor.
         </p>
 
         <div class="bottom">
@@ -47,8 +45,7 @@
       <div class="interaction">
         <span>$ 4000</span>
         <button type="button" class="interaction__btn" title="like">
-          <span class="icon" title="like">
-          </span>
+          <span class="icon" title="like"></span>
         </button>
       </div>
     </div>
@@ -78,9 +75,9 @@ export default {
       titlelize,
       GENDER_ENUM,
       BASE_URI,
-    }
+    };
   },
-}
+};
 </script>
 
 <style scoped>
