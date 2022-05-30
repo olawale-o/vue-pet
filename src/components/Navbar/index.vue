@@ -1,5 +1,5 @@
 <template>
-  <header class="header" v-if="user">
+  <header class="header">
     <nav class="nav">
       <div class="logo">
         <router-link to="/" class="link logo_link">Paws</router-link>
@@ -14,11 +14,22 @@
         </li>
       </ul>
       <ul class="nav__list lg">
-        <li class="nav__item">
-          <router-link to="/" type="button" class="btn__link btn-login">
-            Logout
-          </router-link>
-        </li>
+        <template v-if="user">
+          <li className="nav__item">
+            <router-link
+              :to="`/${user.id}/pets`"
+              type="button"
+              class="btn__link my-pet"
+            >
+              My Pets
+            </router-link>
+          </li>
+          <li class="nav__item">
+            <router-link to="/" type="button" class="btn__link btn-login">
+              Logout
+            </router-link>
+          </li>
+        </template>
       </ul>
     </nav>
   </header>
