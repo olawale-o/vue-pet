@@ -32,7 +32,7 @@
 
   .nav .nav__list {
     display: flex;
-    flex: auto;
+    flex: 4;
     justify-content: flex-end;
   }
 
@@ -47,6 +47,17 @@
     font-weight: 600;
     border-radius: 5px;
     transition: color 0.2s ease-in-out;
+    text-decoration: none;
+  }
+
+  .nav__list .btn__link.my-pet {
+    color: #bb3133;
+    border-radius: 15px;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .nav__list .btn__link.my-pet:hover {
+    color: #cf0a0d;
   }
 
   .nav__list .btn__link.btn-login {
